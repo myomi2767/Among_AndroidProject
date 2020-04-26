@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".parents.Parents02">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="자녀1"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_margin="15dp"
+                android:id="@+id/farentsitemview"
+                android:layout_width="90dp"
+                android:layout_height="70dp"
+                android:layout_gravity="center"/>
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageButton
+            android:id="@+id/popButton01"
+            android:layout_width="160dp"
+            android:layout_height="140dp"
+            app:srcCompat="@drawable/baseline_call_black_18dp_120"
+            tools:layout_editor_absoluteX="40dp"
+            tools:layout_editor_absoluteY="196dp" />
+
+        <ImageButton
+            android:id="@+id/popButton02"
+            android:layout_width="160dp"
+            android:layout_height="140dp"
+            app:srcCompat="@drawable/baseline_duo_black_18dp_120"
+            tools:layout_editor_absoluteX="235dp"
+            tools:layout_editor_absoluteY="196dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageButton
+            android:id="@+id/popButton03"
+            android:layout_width="160dp"
+            android:layout_height="140dp"
+            app:srcCompat="@drawable/baseline_chat_black_18dp_120"
+            tools:layout_editor_absoluteX="40dp"
+            tools:layout_editor_absoluteY="196dp" />
+
+        <ImageButton
+            android:id="@+id/popButton04"
+            android:layout_width="160dp"
+            android:layout_height="140dp"
+            app:srcCompat="@drawable/baseline_location_on_black_18dp_120"
+            tools:layout_editor_absoluteX="235dp"
+            tools:layout_editor_absoluteY="196dp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/close_btn"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="50dp"
+        android:text="종료"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2" />
+
+</LinearLayout>
