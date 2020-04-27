@@ -14,7 +14,8 @@
         android:theme="@style/AppTheme">
         <activity android:name=".parents.FamilyChat"></activity>
         <activity android:name=".parents.Parents02"></activity>
-        <activity android:name=".parents.Parents">
+        <activity android:name=".parents.Parents"></activity>
+        <activity android:name=".function.FunctionActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
