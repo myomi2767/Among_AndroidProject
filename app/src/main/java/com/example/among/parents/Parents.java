@@ -38,6 +38,9 @@ public class Parents extends AppCompatActivity {
         item.add(new ParentsItem("자녀 3", R.drawable.user));
         item.add(new ParentsItem("자녀 4", R.drawable.user));
         item.add(new ParentsItem("자녀 5", R.drawable.user));
+        item.add(new ParentsItem("자녀 6", R.drawable.user));
+        item.add(new ParentsItem("자녀 7", R.drawable.user));
+        item.add(new ParentsItem("자녀 8", R.drawable.user));
 
         for(int i=0; i<item.size(); i++){
             itemList.add(item.get(i));

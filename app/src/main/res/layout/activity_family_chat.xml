@@ -7,6 +7,14 @@
     android:orientation="vertical"
     tools:context=".parents.FamilyChat">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme" />
+
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
@@ -47,4 +55,5 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         tools:layout_editor_absoluteX="176dp"
         tools:layout_editor_absoluteY="329dp" />
+
 </LinearLayout>

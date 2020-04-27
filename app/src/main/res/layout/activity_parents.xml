@@ -4,12 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
     tools:context=".parents.Parents">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:fillViewport="true"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
@@ -18,12 +20,20 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
     </androidx.core.widget.NestedScrollView>
-    <ToggleButton
-        android:id="@+id/toggleButton"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:text="ToggleButton"
-        android:textOff="사랑하는 가족들"
-        android:textOn="채팅방 입장" />
+        android:layout_height="match_parent">
+
+        <ToggleButton
+            android:id="@+id/toggleButton"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:text="ToggleButton"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textOff="채팅방 입장"
+            android:textOn="채팅방 입장"
+            android:textSize="30sp" />
+    </LinearLayout>
 
 </LinearLayout>

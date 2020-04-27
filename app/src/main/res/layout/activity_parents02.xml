@@ -39,13 +39,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="horizontal">
 
         <ImageButton
             android:id="@+id/popButton01"
             android:layout_width="160dp"
             android:layout_height="140dp"
+            android:layout_margin="6dp"
             app:srcCompat="@drawable/baseline_call_black_18dp_120"
             tools:layout_editor_absoluteX="40dp"
             tools:layout_editor_absoluteY="196dp" />
@@ -54,6 +55,7 @@
             android:id="@+id/popButton02"
             android:layout_width="160dp"
             android:layout_height="140dp"
+            android:layout_margin="6dp"
             app:srcCompat="@drawable/baseline_duo_black_18dp_120"
             tools:layout_editor_absoluteX="235dp"
             tools:layout_editor_absoluteY="196dp" />
@@ -69,7 +71,8 @@
             android:id="@+id/popButton03"
             android:layout_width="160dp"
             android:layout_height="140dp"
-            app:srcCompat="@drawable/baseline_chat_black_18dp_120"
+            android:layout_margin="6dp"
+            app:srcCompat="@drawable/baseline_keyboard_voice_black_18dp_120"
             tools:layout_editor_absoluteX="40dp"
             tools:layout_editor_absoluteY="196dp" />
 
@@ -77,6 +80,7 @@
             android:id="@+id/popButton04"
             android:layout_width="160dp"
             android:layout_height="140dp"
+            android:layout_margin="6dp"
             app:srcCompat="@drawable/baseline_location_on_black_18dp_120"
             tools:layout_editor_absoluteX="235dp"
             tools:layout_editor_absoluteY="196dp" />
