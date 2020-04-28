@@ -1,6 +1,7 @@
 
 package com.example.among.children;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -24,17 +26,18 @@ public class childrenActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigation;
     private FloatingActionButton fab;
-
+    private Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_children);
 
         //앱바
-        ActionBar ab = getSupportActionBar() ;
-        ab.setTitle("AMONG") ;
-        ab.setDisplayUseLogoEnabled(true) ;
-        ab.setDisplayShowHomeEnabled(true);
+        toolbar=findViewById(R.id.toolbar);
+        toolbar.setTitle("AMONG");
+        toolbar.setTitleTextColor(Color.WHITE);
+        setSupportActionBar(toolbar);
+
 
         //바텀 네비
         bottomNavigation = findViewById(R.id.bottom_navigation);
