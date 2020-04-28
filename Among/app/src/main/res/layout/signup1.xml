@@ -15,6 +15,7 @@
             android:layout_height="match_parent" />
     </ScrollView>
     <CheckBox
+        android:id="@+id/checkbox1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="40dp"
@@ -29,6 +30,7 @@
             android:layout_height="match_parent" />
     </ScrollView>
     <CheckBox
+        android:id="@+id/checkbox2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="40dp"
@@ -43,19 +45,23 @@
             android:layout_height="match_parent" />
     </ScrollView>
     <CheckBox
+        android:id="@+id/checkbox3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="40dp"
         android:text="위치정보약관 동의" />
     <CheckBox
+        android:id="@+id/checkboxAll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="40dp"
         android:text="모두 동의"/>
     <Button
+        android:id="@+id/next"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="40dp"
+        android:enabled="false"
         android:text="다음"/>
 </LinearLayout>
 
