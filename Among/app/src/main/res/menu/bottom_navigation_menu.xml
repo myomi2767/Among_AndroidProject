@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_wellfare"
+        android:icon="@drawable/wellfare"
+        android:title="@string/title_wellfare" />
+    <item
+        android:id="@+id/navigation_community"
+        android:icon="@drawable/community"
+        android:title="@string/title_community" />
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/home"
+        android:title="@string/title_home" />
+    <item
+        android:id="@+id/navigation_chat"
+        android:icon="@drawable/chat"
+        android:title="@string/title_chat" />
+    <item
+        android:id="@+id/navigation_question"
+        android:icon="@drawable/calendar"
+        android:title="일정" />
+</menu>

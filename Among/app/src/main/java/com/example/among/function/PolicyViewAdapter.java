@@ -14,14 +14,13 @@ import com.example.among.R;
 import java.util.ArrayList;
 
 
-
 public class PolicyViewAdapter
         extends RecyclerView.Adapter<PolicyViewAdapter.ViewHolder>{
     PolicyFragment context;
     ArrayList<PolicyViewItem> data;
     int res_id;
 
-    public PolicyViewAdapter(PolicyFragment context, int res_id,ArrayList<PolicyViewItem> data) {
+    public PolicyViewAdapter(PolicyFragment context, int res_id, ArrayList<PolicyViewItem> data) {
         this.context = context;
         this.data = data;
         this.res_id=res_id;

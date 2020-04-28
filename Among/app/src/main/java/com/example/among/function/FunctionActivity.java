@@ -7,7 +7,6 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 
 import com.example.among.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -42,11 +41,11 @@ public class FunctionActivity extends AppCompatActivity {
                     getSupportFragmentManager().beginTransaction().
                             replace(R.id.function_container, policyFragment).commitAllowingStateLoss();
                     return true;
-                }else if(menuItem.getItemId()==R.id.item2){
+                }else if(menuItem.getItemId()== R.id.item2){
                     getSupportFragmentManager().beginTransaction().
                             replace(R.id.function_container, nurseFragment).commitAllowingStateLoss();
                     return true;
-                }else if(menuItem.getItemId()==R.id.item3){
+                }else if(menuItem.getItemId()== R.id.item3){
                     getSupportFragmentManager().beginTransaction().
                             replace(R.id.function_container, communityFragment).commitAllowingStateLoss();
                     return true;
@@ -56,38 +55,10 @@ public class FunctionActivity extends AppCompatActivity {
             }
         });
 
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                int position = tab.getPosition();
-                Fragment fragment;
-
-                if(position==0){
-                    fragment = policyFragment;
-                }else if(position ==1){
-                    fragment = healthFragment;
-                }else {
-                    fragment = nurseFragment;
-                }
-                getSupportFragmentManager().beginTransaction().
-                        replace(R.id.function_container,fragment).commit();
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
 
     }
     public void btn_register(View view){
-        Intent intent = new Intent(FunctionActivity.this,boardWrite.class);
+        Intent intent = new Intent(FunctionActivity.this, boardWrite.class);
         startActivity(intent);
     }
 }

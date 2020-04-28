@@ -6,4 +6,8 @@
     <color name="colorbackground">#FFFAC9</color>
     <color name="colorMonth">#FFCECE</color>
     <color name="notMonth">#FFFFFF</color>
+    <color name="font">#FFFFFF</color>
+    <color name="appbar">#FFC107</color>
+
+
 </resources>

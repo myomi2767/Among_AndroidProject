@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Among.iml" filepath="$PROJECT_DIR$/Among.iml" group="Among" />
+      <module fileurl="file://$PROJECT_DIR$/app/Among-app.iml" filepath="$PROJECT_DIR$/app/Among-app.iml" group="Among/app" />
+      <module fileurl="file://$PROJECT_DIR$/Among_AndroidProject-Among.iml" filepath="$PROJECT_DIR$/Among_AndroidProject-Among.iml" group="Among" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="Among/app" />
     </modules>
   </component>
