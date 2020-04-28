@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/item1"
+        android:title="정책/복지"
+        app:showAsAction="always"
+        android:enabled="true"
+        android:icon="@drawable/grandparents"
+        />
+    <item
+        android:id="@+id/item2"
+        android:title="지도"
+        app:showAsAction="always"
+        android:enabled="true"
+        android:icon="@drawable/address"
+        />
+    <item
+        android:id="@+id/item3"
+        android:title="커뮤니티"
+        app:showAsAction="always"
+        android:icon="@drawable/community"
+        android:enabled="true"
+        />
+    <item
+        android:id="@+id/item4"
+        android:title="캘린더"
+        app:showAsAction="always"
+        android:icon="@drawable/calendar"
+        android:enabled="true"/>
+</menu>

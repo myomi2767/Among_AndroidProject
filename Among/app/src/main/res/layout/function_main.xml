@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorbackground"
+    tools:context=".function.FunctionActivity">
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/function_tab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tabMode="fixed"
+        app:tabTextColor="@color/colorPrimary"
+        app:tabSelectedTextColor="@color/colorAccent"
+        android:background="@android:color/background_light">
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tab_polish"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="정책" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tab_health"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="복지" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tab_nurse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="요양시설" />
+    </com.google.android.material.tabs.TabLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:id="@+id/function_container"
+        >
+
+        <fragment
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:name="com.example.among.function.PolicyFragment"
+        />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/navi_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:orientation="vertical" />
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="#FFFFFF"
+        app:itemIconTint="@color/cardview_dark_background"
+        app:itemTextAppearanceActive="@color/colorPrimary"
+        app:menu="@menu/bottom_bar"/>
+
+
+</LinearLayout>
