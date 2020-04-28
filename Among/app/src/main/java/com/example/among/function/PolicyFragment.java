@@ -15,11 +15,24 @@ import java.util.ArrayList;
 
 
 public class PolicyFragment extends Fragment {
+    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
+    private String mParam1;
+    private String mParam2;
+
     RecyclerView card_list;
-    private PolicyFragment PolicyFragment;
+    private com.example.among.function.PolicyFragment PolicyFragment;
 
     public PolicyFragment(){
 
+    }
+    public static com.example.among.function.PolicyFragment newInstance(String param1, String param2) {
+        com.example.among.function.PolicyFragment fragment = new PolicyFragment();
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
+        fragment.setArguments(args);
+        return fragment;
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,6 +61,8 @@ public class PolicyFragment extends Fragment {
         card_list.setHasFixedSize(true);
         card_list.setLayoutManager(manager);
         card_list.setAdapter(adapter);
+
+
         return viewGroup;
     }
 

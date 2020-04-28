@@ -7,4 +7,10 @@
     <string name="action_sign_in">로그인</string>
     <string name="action_sign_in_short">로그인</string>
     <string name="welcome">"Welcome !"</string>
+
+    <string name="title_home">홈</string>
+    <string name="title_wellfare">복지</string>
+    <string name="title_chat">채팅</string>
+    <string name="title_community">커뮤니티</string>
+    <string name="title_calendar">일정</string>
 </resources>
