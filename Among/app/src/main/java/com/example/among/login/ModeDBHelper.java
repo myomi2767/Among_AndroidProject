@@ -1,15 +1,15 @@
-package com.example.among;
+package com.example.among.login;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-public class DBHelper extends SQLiteOpenHelper {
+public class ModeDBHelper extends SQLiteOpenHelper {
     public static  final int DB_VERSION = 1;
 
-    public DBHelper(Context context){
-        super(context,"among.db",null,DB_VERSION);
+    public ModeDBHelper(Context context){
+        super(context,"mode.db",null,DB_VERSION);
     }
 
     @Override

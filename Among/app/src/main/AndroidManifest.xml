@@ -5,16 +5,21 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".function.FunctionActivity"/>
-        <activity android:name=".login.LoginActivity"/>
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".login.SignUp"></activity>
+        <activity android:name=".login.SignUpTerms" />
+        <activity android:name=".function.FunctionActivity" />
+        <activity android:name=".login.LoginActivity" />
         <activity android:name=".parents.FamilyChat" />
         <activity android:name=".parents.Parents02" />
         <activity android:name=".parents.Parents" />

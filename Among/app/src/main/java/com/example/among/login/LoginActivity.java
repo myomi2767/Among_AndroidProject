@@ -5,6 +5,8 @@ import android.app.Activity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -27,7 +29,7 @@ import com.example.among.R;
 public class LoginActivity extends AppCompatActivity {
 
     private LoginViewModel loginViewModel;
-
+    SQLiteDatabase db;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -129,6 +131,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void register(View view){
-
+        Intent intent = new Intent(getApplicationContext(),SignUpTerms.class);
+        startActivity(intent);
     }
 }
