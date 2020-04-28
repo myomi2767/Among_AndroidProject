@@ -1,2 +1,0 @@
-# AMONG-Android Project
-
