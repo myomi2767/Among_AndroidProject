@@ -41,6 +41,7 @@ public class SignUpTerms extends AppCompatActivity {
         public void setCheckVal(boolean chkVal){
             for(int i=0; i<checkArr.length;i++){
                 checkArr[i].setChecked(chkVal);
+
             }
         }
 
