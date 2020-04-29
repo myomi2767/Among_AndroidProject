@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.among">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
 
     <application
         android:allowBackup="true"
@@ -18,18 +20,22 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".login.SignUp"></activity>
         <activity android:name=".login.SignUpTerms" />
-        <activity android:name=".function.FunctionActivity" />
         <activity android:name=".login.LoginActivity" />
         <activity android:name=".parents.FamilyChat" />
         <activity android:name=".parents.Parents02" />
         <activity android:name=".parents.Parents" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".function.FunctionActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <receiver android:name=".calendar.AlarmReceiver" android:enabled="true" android:exported="true">
+            -<intent-filter>
+                <action android:name="com.exaple.among.calendar.DEFAULT"/>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/activity_custom_calender">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:background="@color/colorbackground">
+    <ImageButton
+        android:id="@+id/previousBtn"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/back"/>
+
+        <TextView
+            android:id="@+id/currentDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:text="Today"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/design_default_color_primary_dark"
+            android:textStyle="bold" />
+        <ImageButton
+            android:id="@+id/nextBtn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/right"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:background="@color/design_default_color_primary_dark"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Sun"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#FBFBFB"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Mon"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#FBFBFB"
+            android:layout_marginTop="4dp"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Tue"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#FBFBFB"
+            android:layout_marginTop="4dp"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Wed"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#FBFBFB"
+            android:layout_marginTop="4dp"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            />
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Thu"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#FBFBFB"
+        android:layout_marginTop="4dp"
+        android:layout_weight="1"
+        android:textStyle="bold"
+        />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Fri"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#FBFBFB"
+            android:layout_marginTop="4dp"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            />
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Sat"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#FBFBFB"
+        android:layout_marginTop="4dp"
+        android:layout_weight="1"
+        android:textStyle="bold"
+        />
+    </LinearLayout>
+        <GridView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/gridView"
+            android:numColumns="7">
+
+        </GridView>
+
+
+
+
+
+
+
+    </LinearLayout>
