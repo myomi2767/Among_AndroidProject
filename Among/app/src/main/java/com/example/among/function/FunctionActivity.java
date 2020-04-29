@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.example.among.R;
+import com.example.among.calendar.CalendarFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 
@@ -22,6 +23,7 @@ public class FunctionActivity extends AppCompatActivity {
     NurseFragment nurseFragment = new NurseFragment();
     HealthFragment healthFragment = new HealthFragment();
     PolicyFragment policyFragment = new PolicyFragment();
+    CalendarFragment calendarFragment = new CalendarFragment();
     TabLayout tabLayout;
     //RecyclerView recyclerView;
 
@@ -31,8 +33,8 @@ public class FunctionActivity extends AppCompatActivity {
         setContentView(R.layout.function_main);
 
         bottomNavigationView = findViewById(R.id.bottom_navi);
-        tabLayout = findViewById(R.id.function_tab);
-      //  recyclerView = findViewById(R.id.list);
+       // tabLayout = findViewById(R.id.function_tab);
+        //  recyclerView = findViewById(R.id.list);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -50,40 +52,16 @@ public class FunctionActivity extends AppCompatActivity {
                     getSupportFragmentManager().beginTransaction().
                             replace(R.id.function_container, communityFragment).commitAllowingStateLoss();
                     return true;
+                }else if(menuItem.getItemId()==R.id.item4){
+                    getSupportFragmentManager().beginTransaction().
+                            replace(R.id.function_container, calendarFragment).commitAllowingStateLoss();
+                    return true;
                 }
 
                 return false;
             }
         });
 
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                int position = tab.getPosition();
-                Fragment fragment;
-
-                if(position==0){
-                    fragment = policyFragment;
-                }else if(position ==1){
-                    fragment = healthFragment;
-                }else {
-                    fragment = nurseFragment;
-                }
-                getSupportFragmentManager().beginTransaction().
-                        replace(R.id.function_container,fragment).commit();
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
 
     }
     public void btn_register(View view){
