@@ -10,12 +10,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.example.among.R;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import com.example.among.R;
 
 public class Parents extends AppCompatActivity {
     ImageView img;
@@ -41,6 +39,8 @@ public class Parents extends AppCompatActivity {
         item.add(new ParentsItem("자녀 6", R.drawable.user));
         item.add(new ParentsItem("자녀 7", R.drawable.user));
         item.add(new ParentsItem("자녀 8", R.drawable.user));
+
+        //자녀 DB가 있어야 실제 통화작업이 가능?!
 
         for(int i=0; i<item.size(); i++){
             itemList.add(item.get(i));

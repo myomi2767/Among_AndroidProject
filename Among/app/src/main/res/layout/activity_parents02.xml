@@ -47,6 +47,7 @@
             android:layout_width="160dp"
             android:layout_height="140dp"
             android:layout_margin="6dp"
+            android:onClick="runCallPhone"
             app:srcCompat="@drawable/baseline_call_black_18dp_120"
             tools:layout_editor_absoluteX="40dp"
             tools:layout_editor_absoluteY="196dp" />
@@ -56,6 +57,7 @@
             android:layout_width="160dp"
             android:layout_height="140dp"
             android:layout_margin="6dp"
+            android:onClick="runVideoCallPhone"
             app:srcCompat="@drawable/baseline_duo_black_18dp_120"
             tools:layout_editor_absoluteX="235dp"
             tools:layout_editor_absoluteY="196dp" />
@@ -72,6 +74,7 @@
             android:layout_width="160dp"
             android:layout_height="140dp"
             android:layout_margin="6dp"
+            android:onClick="runVoiceMail"
             app:srcCompat="@drawable/baseline_keyboard_voice_black_18dp_120"
             tools:layout_editor_absoluteX="40dp"
             tools:layout_editor_absoluteY="196dp" />
