@@ -1,0 +1,9 @@
+create table member(
+    userID varchar2(20) primary key,
+    name varchar2(20),
+    password varchar2(20),
+    phone varchar2(15),
+    birth varchar2(10),
+    gender varchar2(10),
+    token varchar2(300)
+);
