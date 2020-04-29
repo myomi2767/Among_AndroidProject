@@ -24,6 +24,7 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:hint="이메일"
             android:layout_weight="1"/>
 
         <Button
