@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorbackground">
+    <EditText
+        android:background="@android:color/white"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="Type Event"
+        android:id="@+id/eventName"
+        android:inputType="textShortMessage"
+        android:layout_margin="20dp"
+        android:gravity="center"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+        <ImageButton
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/calendar_time"
+            android:layout_margin="10dp"
+            android:layout_gravity="center"
+            android:id="@+id/setEventBtn"/>
+
+        <TextView
+            android:id="@+id/eventTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="00:00 오전"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold" />
+        <CheckBox
+            android:layout_marginLeft="20dp"
+            android:id="@+id/alarmSet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="알람 설정"
+            />
+
+
+    </LinearLayout>
+    <Button
+        android:id="@+id/addevent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="추가"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:textAllCaps="false"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimaryDark"
+        android:background="#FFC107"
+        />
+
+
+</LinearLayout>
