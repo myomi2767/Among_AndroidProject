@@ -34,6 +34,8 @@
         <activity android:name=".parents.VoiceRecord" />
         <activity android:name=".function.FunctionActivity" />
         <activity android:name=".parents.Parents">
+        <activity android:name=".parents.Parents" />
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
