@@ -1,6 +1,7 @@
 package com.example.among.login;
 
 public class MemberDTO {
+    private String idx;
     private String userID;
     private String name;
     private String password;
@@ -32,15 +33,28 @@ public class MemberDTO {
         this.token = token;
     }
 
+    public MemberDTO(String idx, String userID, String name, String password, String phone, String birth, String gender, String token) {
+        this.idx = idx;
+        this.userID = userID;
+        this.name = name;
+        this.password = password;
+        this.phone = phone;
+        this.birth = birth;
+        this.gender = gender;
+        this.token = token;
+    }
+
     @Override
     public String toString() {
         return "MemberDTO{" +
-                "userID='" + userID + '\'' +
+                "idx='" + idx + '\'' +
+                ", userID='" + userID + '\'' +
                 ", name='" + name + '\'' +
                 ", password='" + password + '\'' +
                 ", phone='" + phone + '\'' +
                 ", birth='" + birth + '\'' +
                 ", gender='" + gender + '\'' +
+                ", token='" + token + '\'' +
                 '}';
     }
 
@@ -98,5 +112,13 @@ public class MemberDTO {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public String getIdx() {
+        return idx;
+    }
+
+    public void setIdx(String idx) {
+        this.idx = idx;
     }
 }

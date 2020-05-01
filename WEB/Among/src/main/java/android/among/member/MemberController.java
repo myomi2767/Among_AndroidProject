@@ -21,13 +21,14 @@ public class MemberController {
 	public @ResponseBody String login(@RequestBody String json) {
 		MemberDTO dto;
 		System.out.println(json);
-		String result="";
+		String result="false";
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			dto = mapper.readValue(json, MemberDTO.class);
 			System.out.println("*******"+dto);
 			if(service.login(dto)!=null) {
 				result = "true";
+				System.out.println(result);
 			}else{
 				result = "false";
 			}
@@ -50,7 +51,7 @@ public class MemberController {
 	public @ResponseBody String insert(@RequestBody String json) {
 		System.out.println(json);
 		ObjectMapper mapper = new ObjectMapper();
-		String str="";
+		String str="0";
 		try {
 			MemberDTO dto = mapper.readValue(json, MemberDTO.class);
 			System.out.println("=============="+dto);
@@ -68,7 +69,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/member/chk.do", method=RequestMethod.POST)
-	public String chkID(String userID) {
+	public @ResponseBody String chkID(String userID) {
 		System.out.println(userID);
 		if(service.chkID(userID)==null) {
 			System.out.println("중복되지 않은 ID");

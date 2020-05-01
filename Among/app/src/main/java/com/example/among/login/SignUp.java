@@ -145,7 +145,7 @@ public class SignUp extends AppCompatActivity {
 
                 Response response = client.newCall(request).execute();
                 data = response.body().string();
-                Log.d("msg",response.body().string());
+                Log.d("msg",data);
 
                 // Connection을 이용한 GET 통신 방법
                 /*HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -193,6 +193,7 @@ public class SignUp extends AppCompatActivity {
             URL url = null;
             BufferedReader br = null;
             String data;
+            String str="";
             try {
                 url = new URL("http://172.20.10.4:8088/among/member/chk.do");
 
@@ -208,25 +209,25 @@ public class SignUp extends AppCompatActivity {
                 if(connection.getResponseCode()==HttpURLConnection.HTTP_OK){
                     br = new BufferedReader(new InputStreamReader(connection.getInputStream()
                             ,"UTF-8"));
-                    String str = br.readLine();
-                    if(str.equals("0")){
-                        chkText.setText("사용가능한 ID입니다.");
-                        chkText.setTextColor(Color.parseColor("#2196F3"));
-                    }else{
-                        chkText.setText("중복되는 ID");
-                        chkText.setTextColor(Color.parseColor("#CD1212"));
-                    }
+                    str = br.readLine();
+                    Log.d("msg",str+"chk");
                 }
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            return null;
+            return str;
         }
 
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-
+            if(s.equals("0")){
+                chkText.setText("사용가능한 ID입니다.");
+                chkText.setTextColor(Color.parseColor("#2196F3"));
+            }else{
+                chkText.setText("중복되는 ID");
+                chkText.setTextColor(Color.parseColor("#CD1212"));
+            }
         }
     }
 }

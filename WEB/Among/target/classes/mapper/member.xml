@@ -5,7 +5,7 @@
   
 <mapper namespace="android.among.member">
   	<insert id="memInsert" parameterType="member">
-  		insert into member values(#{userID},#{password},#{name},#{phone},#{birth},#{gender})
+  		insert into member values(member_seq.nextVal, #{userID},#{name},#{password},#{phone},#{birth},#{gender},#{token})
   	</insert>
   	<select id="chk" resultType="member" parameterType="String">
   		select * from member where userID=#{userID}

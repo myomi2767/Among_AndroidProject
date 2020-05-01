@@ -11,7 +11,9 @@ public class MemberDAOImpl implements MemberDAO {
 	
 	@Override
 	public MemberDTO login(MemberDTO login) {
-		return sqlSession.selectOne("android.among.member.login", login);
+		MemberDTO mem = sqlSession.selectOne("android.among.member.login", login);
+		System.out.println(mem);
+		return mem;
 	}
 
 	@Override
