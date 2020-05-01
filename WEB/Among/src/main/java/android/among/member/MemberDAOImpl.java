@@ -11,7 +11,7 @@ public class MemberDAOImpl implements MemberDAO {
 	
 	@Override
 	public MemberDTO login(MemberDTO login) {
-		return null;
+		return sqlSession.selectOne("android.among.member.login", login);
 	}
 
 	@Override

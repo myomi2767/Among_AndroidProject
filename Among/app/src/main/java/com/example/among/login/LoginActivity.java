@@ -6,7 +6,10 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -15,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -25,11 +29,33 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.among.R;
+import com.example.among.children.childrenActivity;
+import com.example.among.parents.FCMActivity;
+import com.example.among.parents.Parents;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
     private LoginViewModel loginViewModel;
     SQLiteDatabase db;
+    DBHandler handler;
+    MemberDTO member;
+    int mode;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +68,14 @@ public class LoginActivity extends AppCompatActivity {
         final Button loginButton = findViewById(R.id.login);
         final ProgressBar loadingProgressBar = findViewById(R.id.loading);
         Button registerButton = findViewById(R.id.register);
+        handler = new DBHandler(this);
+        Cursor cursor = handler.selectMode();
+
+        while (cursor.moveToNext()){
+            mode = cursor.getInt(0);
+        }
+
+
 
         loginViewModel.getLoginFormState().observe(this, new Observer<LoginFormState>() {
             @Override
@@ -114,8 +148,15 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 loadingProgressBar.setVisibility(View.VISIBLE);
-                loginViewModel.login(usernameEditText.getText().toString(),
-                        passwordEditText.getText().toString());
+                String userID = usernameEditText.getText().toString();
+                String password = passwordEditText.getText().toString();
+
+                member = new MemberDTO(userID,password);
+                HttpLogin task = new HttpLogin();
+                task.execute(member);
+
+                /*loginViewModel.login(usernameEditText.getText().toString(),
+                        passwordEditText.getText().toString());*/
             }
         });
     }
@@ -133,5 +174,58 @@ public class LoginActivity extends AppCompatActivity {
     public void register(View view){
         Intent intent = new Intent(getApplicationContext(),SignUpTerms.class);
         startActivity(intent);
+    }
+
+    class HttpLogin extends AsyncTask<MemberDTO, Void, String>{
+        String result;
+        @Override
+        protected String doInBackground(MemberDTO... memberDTOS) {
+            URL url = null;
+            JSONObject object = new JSONObject();
+            try {
+                object.put("userID",memberDTOS[0].getUserID());
+                object.put("password",memberDTOS[0].getPassword());
+                url = new URL("http://172.20.10.4:8088/among/member/login.do");
+
+                OkHttpClient client = new OkHttpClient();
+                String json = object.toString();
+                Log.d("msg",json);
+                Request request = new Request.Builder()
+                        .url(url)
+                        .post(RequestBody.create(MediaType.parse("application/json"),json))
+                        .build();
+
+                Response response = client.newCall(request).execute();
+                result = response.body().string();
+                Log.d("msg",result);
+                Log.d("msg",mode+"<<<mode값");
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return result;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            if(s.equals("true")&mode==0){
+                //자녀단 모드
+                Intent intent = new Intent(LoginActivity.this, childrenActivity.class);
+                startActivity(intent);
+                finish();
+                Log.d("msg","자녀");
+            }else if(s.equals("true")&mode==1){
+                //부모님단 모드
+                Intent intent = new Intent(LoginActivity.this, Parents.class);
+                startActivity(intent);
+                finish();
+                Log.d("msg","부모님");
+            }else{
+                Toast.makeText(LoginActivity.this,"ID와 비밀번호를 확인해주세요",Toast.LENGTH_LONG).show();
+            }
+        }
     }
 }

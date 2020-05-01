@@ -26,6 +26,11 @@ public class DBHandler {
                 null,null,null);
         return cursor;
     }
+    public Cursor selectMode(){
+        Cursor cursor = db.query("mode",new String[]{"mode"},null,null,
+                null,null,null);
+        return cursor;
+    }
     /*public void update(){
         Cursor sel = select();
         sel.getInt(0);

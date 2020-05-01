@@ -17,6 +17,11 @@ public class MemberDTO {
         this.userID = userID;
     }
 
+    public MemberDTO(String userID, String password) {
+        this.userID = userID;
+        this.password = password;
+    }
+
     public MemberDTO(String userID, String name, String password, String phone, String birth, String gender, String token) {
         this.userID = userID;
         this.name = name;
@@ -85,5 +90,13 @@ public class MemberDTO {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

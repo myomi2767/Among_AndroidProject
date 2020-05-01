@@ -13,13 +13,11 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Override
 	public MemberDTO login(MemberDTO login) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.login(login);
 	}
 
 	@Override
 	public int insert(MemberDTO user) {
-		
 		return dao.insert(user);
 	}
 

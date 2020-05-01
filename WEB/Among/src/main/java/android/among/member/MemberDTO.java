@@ -7,6 +7,7 @@ public class MemberDTO {
     private String phone;
     private String birth;
     private String gender;
+    private String token;
     
     public MemberDTO() {
     	
@@ -23,7 +24,8 @@ public class MemberDTO {
 		this.password = password;
 	}
 
-	public MemberDTO(String userID, String name, String password, String phone, String birth, String gender) {
+	public MemberDTO(String userID, String name, String password, String phone, String birth, String gender,
+			String token) {
 		super();
 		this.userID = userID;
 		this.name = name;
@@ -31,12 +33,13 @@ public class MemberDTO {
 		this.phone = phone;
 		this.birth = birth;
 		this.gender = gender;
+		this.token = token;
 	}
 
 	@Override
 	public String toString() {
 		return "MemberDTO [userID=" + userID + ", name=" + name + ", password=" + password + ", phone=" + phone
-				+ ", birth=" + birth + ", gender=" + gender + "]";
+				+ ", birth=" + birth + ", gender=" + gender + ", token=" + token + "]";
 	}
 
 	public String getUserID() {
@@ -85,6 +88,14 @@ public class MemberDTO {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
 	}
     
     
