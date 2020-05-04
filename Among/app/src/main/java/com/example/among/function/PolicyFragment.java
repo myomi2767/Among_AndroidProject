@@ -4,12 +4,20 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.among.R;
+import com.example.among.function.detail.PolicyDetailFragment1;
+import com.example.among.function.detail.PolicyDetailFragment2;
+import com.example.among.function.detail.PolicyDetailFragment3;
+import com.example.among.function.detail.PolicyDetailFragment4;
+import com.example.among.function.detail.PolicyDetailFragment5;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 
@@ -21,13 +29,17 @@ public class PolicyFragment extends Fragment {
     private String mParam2;
 
     RecyclerView card_list;
-    private com.example.among.function.PolicyFragment PolicyFragment;
+    private PolicyFragment PolicyFragment;
 
+    MyReplaceFragment myReplaceFragment;
     public PolicyFragment(){
 
     }
-    public static com.example.among.function.PolicyFragment newInstance(String param1, String param2) {
-        com.example.among.function.PolicyFragment fragment = new PolicyFragment();
+    public PolicyFragment(MyReplaceFragment myReplaceFragment){
+        this.myReplaceFragment = myReplaceFragment;
+    }
+    public static PolicyFragment newInstance(String param1, String param2) {
+        PolicyFragment fragment = new PolicyFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -41,27 +53,55 @@ public class PolicyFragment extends Fragment {
         card_list = (RecyclerView)viewGroup.findViewById(R.id.card_list);
 
         ArrayList<PolicyViewItem> recycle_card_data = new ArrayList<PolicyViewItem>();
-        PolicyViewItem[] item = new PolicyViewItem[6];
-        item[0] = new PolicyViewItem(R.drawable.together,"정책 1","간단요약1");
-        item[1] = new PolicyViewItem(R.drawable.together,"정책 2","간단요약2");
-        item[2] = new PolicyViewItem(R.drawable.together,"정책 3","간단요약3");
-        item[3] = new PolicyViewItem(R.drawable.together,"정책 4","간단요약4");
-        item[4] = new PolicyViewItem(R.drawable.together,"정책 5","간단요약5");
-        item[5] = new PolicyViewItem(R.drawable.together,"정책 6","간단요약6");
+        PolicyViewItem[] item = new PolicyViewItem[5];
+        item[0] = new PolicyViewItem("치매검진사업");
+        item[1] = new PolicyViewItem("치매치료관리비지원사업");
+        item[2] = new PolicyViewItem("노인실명예방관리사업");
+        item[3] = new PolicyViewItem("노인맞춤돌봄서비스");
+        item[4] = new PolicyViewItem("노인주거복지시설");
 
-        for(int i=0;i<6;i++){
+        for(int i=0;i<5;i++){
             recycle_card_data.add(item[i]);
         }
 
-        PolicyViewAdapter adapter = new PolicyViewAdapter(PolicyFragment,
+        PolicyViewAdapter adapter = new PolicyViewAdapter(this,
                 R.layout.fragment_policy,recycle_card_data);
+
+        adapter.setOnItemClickListener(new PolicyViewAdapter.MyOnItemClickListener() {
+            @Override
+            public void onItemClick(View v, int pos) {
+                Fragment fragment = null;
+                switch (pos){
+                    case 0:
+                        fragment = new PolicyDetailFragment1();
+                        break;
+                    case 1:
+                        fragment = new PolicyDetailFragment2();
+                        break;
+                    case 2:
+                        fragment = new PolicyDetailFragment3();
+                        break;
+                    case 3:
+                        fragment = new PolicyDetailFragment4();
+                        break;
+                    case 4:
+                        fragment = new PolicyDetailFragment5();
+                        break;
+                }
+               /* getChildFragmentManager().beginTransaction()
+                        .replace(R.id.content_container,fragment).commit();*/
+               myReplaceFragment.onClick(fragment);
+            }
+        });
+
         LinearLayoutManager manager = new LinearLayoutManager(getActivity());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
+
+        /*GridLayoutManager manager = new GridLayoutManager(getContext(),2);*/
 
         card_list.setHasFixedSize(true);
         card_list.setLayoutManager(manager);
         card_list.setAdapter(adapter);
-
 
         return viewGroup;
     }

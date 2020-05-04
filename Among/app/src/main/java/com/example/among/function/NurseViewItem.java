@@ -1,10 +1,10 @@
 package com.example.among.function;
 
 
-public class PolicyViewItem {
+public class NurseViewItem {
     String name;
 
-    public PolicyViewItem(String name) {
+    public NurseViewItem(String name) {
         this.name = name;
     }
 
@@ -14,7 +14,7 @@ public class PolicyViewItem {
 
     @Override
     public String toString() {
-        return "PolicyViewItem{" +
+        return "NurseViewItem{" +
                 "name='" + name + '\'' +
                 '}';
     }

@@ -42,9 +42,6 @@
 	</beans:bean>
 	
 	<!-- ===========================파일업로드================================== -->
-	<context:component-scan base-package="multi" />
-	<context:component-scan base-package="android" />
-	
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<beans:property name="maxUploadSize" value="4000000"/>
 	</beans:bean>

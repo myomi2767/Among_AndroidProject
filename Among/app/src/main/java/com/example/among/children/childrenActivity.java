@@ -17,6 +17,7 @@ import com.example.among.children.fragment.chatFragment;
 import com.example.among.children.fragment.communityFragment;
 import com.example.among.children.fragment.homeFragment;
 import com.example.among.children.fragment.scheduleFragment;
+import com.example.among.function.PolicyCareFragment;
 import com.example.among.function.PolicyFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -60,7 +61,7 @@ public class childrenActivity extends AppCompatActivity {
                             openFragment(homeFragment.newInstance("", ""));
                             return true;
                         case R.id.navigation_wellfare:
-                            openFragment(PolicyFragment.newInstance("", ""));
+                            openFragment(PolicyCareFragment.newInstance("",""));
                             return true;
                         case R.id.navigation_chat:
                             openFragment(chatFragment.newInstance("", ""));

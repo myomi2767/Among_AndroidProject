@@ -3,9 +3,7 @@ package com.example.among.function;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,30 +13,29 @@ import com.example.among.R;
 import java.util.ArrayList;
 
 
-
-public class PolicyViewAdapter
-        extends RecyclerView.Adapter<PolicyViewAdapter.ViewHolder>{
-    PolicyFragment context;
-    ArrayList<PolicyViewItem> data;
+public class HealthViewAdapter
+        extends RecyclerView.Adapter<HealthViewAdapter.ViewHolder>{
+    HealthFragment context;
+    ArrayList<NurseViewItem> data;
     int res_id;
 
-    public PolicyViewAdapter(PolicyFragment context, int res_id,ArrayList<PolicyViewItem> data) {
+    public HealthViewAdapter(HealthFragment context, int res_id, ArrayList<NurseViewItem> data) {
         this.context = context;
         this.data = data;
         this.res_id=res_id;
     }
+
     //클릭 이벤트를 위한 메소드 작성 ---------------------------------------
     public interface MyOnItemClickListener{
         void onItemClick(View v, int pos);
     }
 
-    private MyOnItemClickListener myListener = null;
+    private HealthViewAdapter.MyOnItemClickListener myListener = null;
 
-    public void setOnItemClickListener(MyOnItemClickListener listener){
+    public void setOnItemClickListener(HealthViewAdapter.MyOnItemClickListener listener){
         this.myListener = listener;
     }
     //------------------------------------------------------------------
-
 
     @NonNull
     @Override
@@ -48,10 +45,9 @@ public class PolicyViewAdapter
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
-        final PolicyViewItem items = data.get(position);
-        TextView txt = holder.name;
-        txt.setText(items.getName());
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        final NurseViewItem items = data.get(position);
+        holder.name.setText(items.getName());
 
     }
 
@@ -71,7 +67,7 @@ public class PolicyViewAdapter
                 public void onClick(View v) {
                     int pos = getAdapterPosition();
                     if(pos != RecyclerView.NO_POSITION){
-                        PolicyViewItem item = data.get(pos);
+                        NurseViewItem item = data.get(pos);
                         if (myListener != null){
                             myListener.onItemClick(v, pos);
                         }
