@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="care_detail1">□ 노인의료복지시설 종류</string>
+    <string name="care_detail1_1">● 노인요양시설</string>
+    <string name="care_detail1_2">● 노인요양공동생활가정</string>
+    <string name="care_detail2">□ 노인의료복지시설</string>
+    <string name="care_detail2_1">● 입소대상</string>
+    <string name="care_detail2_2">- 노인요양시설 · 노인요양공동생활가정(입소시설)</string>
+    <string name="care_detail2_3">· 기초생활수급자(생계급여 또는 의료급여)중 65세 이상의 자</string>
+    <string name="care_detail2_4">· 부양의무자로부터 적절한 부양을 받지 못하는 65세 이상의 자</string>
+    <string name="care_detail2_5">※ 학대피해 노인이나 긴급조치 대상자 등 시장 · 군수 · 구청장이 시설보호가 필요하다고 인정하는 경우 입소 가능</string>
+    <string name="care_detail2_6">· 입소자로부터 입소비용의 전부를 수납하여 운영하는 시설의 경우는 60세 이상의 자</string>
+    <string name="care_detail2_7">● 입소절차</string>
+    <string name="care_detail2_8">- 장기요양급여수급자 중 시설급여 대상자</string>
+    <string name="care_detail2_9">· 장기요양인정신청(공단 지사) → 방문조사 → 등급판정위원회 → 장기요양인정서 수령 → 아래 입소 절차에 따라 입소</string>
+    <string name="care_detail2_10">※ 장기요양기관에서는 반드시 기초생활수급자(생계급여 또는 의료급여) 및 기타 의료급여수급권자에 대한 입소의뢰서를 확인한 후 수급자와 계약을 체결하여야 한다.</string>
+    <string name="care_detail2_11">- 기초생활수급자(생계급여 또는 의료급여) 및 의료급여수급자</string>
+    <string name="care_detail2_12">· 주소지를 관할하는 특별자치도지사 · 시장 · 군수 · 구청장에게 입소신청서 제출 → 입소여부 및 입소시설 결정 → 신청인 및 당해시설에 통지</string>
+    <!-- ****************************************************************************** -->
+    <string name="care2_detail1">□ 소개</string>
+    <string name="care2_detail1_1">● 방문요양서비스, 주 · 야간보호서비스, 단기보호서비스, 방문목욕서비스, 재가노인지원서비스, 방문간호 중 하나 이상의 서비스를 제공하는 시설</string>
+    <string name="care2_detail2">□ 이용대상</string>
+    <string name="care2_detail2_1">● 장기요양급여수급자</string>
+    <string name="care2_detail2_2">● 심신이 허약하거나 장애가 있는 65세 이상의 자(이용자로부터 이용비용의 전부를 수납받아 운영하는 시설의 경우에는 60세 이상의 자)로서 다음에 해당하는 노인</string>
+    <string name="care2_detail2_3">① 방문요양서비스 : 1일 중 일정시간 동안 가정에서의 보호가 필요한 자</string>
+    <string name="care2_detail2_4">② 주 · 야간보호서비스 : 주간 또는 야간 동안의 보호가 필요한 자</string>
+    <string name="care2_detail2_5">③ 단기보호서비스 : 월 1일 이상 15일 이하 단기간의 보호가 필요한 자</string>
+    <string name="care2_detail2_6">④ 방문 목욕서비스 : 가정에서의 목욕이 필요한 자</string>
+    <string name="care2_detail2_7">⑤ 방문간호서비스 : 간호, 진료의 보조, 구강위생 등이 필요한 자</string>
+    <string name="care2_detail2_8">⑥ 재가노인지원서비스 : ①부터 ⑤까지의 서비스 이외의 서비스로서 상담 · 교육 및 각종 지원 서비스가 필요한 자</string>
+    <string name="care2_detail3">□ 이용절차</string>
+    <string name="care2_detail3_1">● 장기요양급여수급자 중 재가급여 대상자가 장기요양기관으로 지정받은 재가노인복지시설(재가노인지원서비스 제외)이용시</string>
+    <string name="care2_detail3_2">● 장기요양인정신청(공단 지사) → 방문조사 → 등급판정위원회 → 장기요양인정서 수령 → 아래 입소 절차에 따라 입소</string>
+    <string name="care2_detail3_3">● 「의료급여법」에 따른 수급권자</string>
+    <string name="care2_detail3_4">- 주소지를 관할하는 특별자치도지사 · 시장 · 군수 · 구청장에게 이용신청(신청접수는 읍 · 면 · 동 주민자치센터에서 대리 접수 가능) → 시 · 군 · 구 입소여부 및 입소시설 결정 → 신청인 및 당해시설에 통지</string>
+
+</resources>

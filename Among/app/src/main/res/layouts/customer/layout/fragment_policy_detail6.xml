@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".function.detail.NurseDetailFragment1">
+    tools:context=".function.detail.PolicyDetailFragment6">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -17,7 +17,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="노인 일자리 및 사회활동 지원 사업"
+                android:text="노인주거복지시설"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:gravity="center"
                 android:textSize="30dp" />
@@ -30,14 +30,26 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/nurse_detail1"
+                    android:text="@string/policy6_detail1"
                     android:textSize="24dp" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:text="@string/nurse_detail1_1" />
+                    android:text="@string/policy6_detail1_1" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/policy6_detail1_2" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/policy6_detail1_3" />
             </LinearLayout>
 
             <LinearLayout
@@ -48,27 +60,97 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/nurse_detail2"
+                    android:text="@string/policy6_detail2"
                     android:textSize="24dp" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:text="@string/nurse_detail2_1" />
+                    android:text="@string/policy6_detail2_1" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:textSize="10dp"
-                    android:text="@string/nurse_detail2_2" />
+                    android:text="@string/policy6_detail2_2" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:textSize="10dp"
+                    android:text="@string/policy6_detail2_3" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:textSize="10dp"
+                    android:text="@string/policy6_detail2_4" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:textSize="8dp"
+                    android:text="@string/policy6_detail2_5" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="10dp"
+                    android:text="@string/policy6_detail2_6" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:textSize="10dp"
+                    android:text="@string/policy6_detail2_7" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:textSize="8dp"
+                    android:text="@string/policy6_detail2_8" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:textSize="8dp"
+                    android:text="@string/policy6_detail2_9" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="10dp"
+                    android:text="@string/policy6_detail2_10" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:textSize="10dp"
+                    android:text="@string/policy6_detail2_11" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:text="@string/nurse_detail2_3" />
+                    android:text="@string/policy6_detail2_12" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="10dp"
+                    android:text="@string/policy6_detail2_13" />
             </LinearLayout>
 
             <LinearLayout
@@ -78,170 +160,70 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/nurse_detail3"
+                    android:text="@string/policy6_detail3"
                     android:textSize="24dp"/>
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="200dp"
-                    android:src="@drawable/policy6"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/nurse_detail4"
-                    android:textSize="24dp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:text="@string/nurse_detail4_1" />
+                    android:text="@string/policy6_detail2_1"
+                    android:layout_marginLeft="10dp"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:textSize="10dp"
-                    android:text="@string/nurse_detail4_2" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/nurse_detail5"
-                    android:textSize="20dp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:text="@string/nurse_detail5_1" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:textSize="10dp"
-                    android:text="@string/nurse_detail5_2" />
+                    android:text="@string/policy6_detail3_1" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="25dp"
+                    android:textSize="10dp"
+                    android:text="@string/policy6_detail3_2" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
                     android:textSize="8dp"
-                    android:text="@string/nurse_detail5_3" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:text="@string/nurse_detail5_4" />
+                    android:text="@string/policy6_detail3_3" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:textSize="10dp"
-                    android:text="@string/nurse_detail5_5" />
+                    android:text="@string/policy6_detail3_4" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:text="@string/nurse_detail5_6" />
+                    android:layout_marginLeft="25dp"
+                    android:textSize="10dp"
+                    android:text="@string/policy6_detail3_5" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:textSize="10dp"
-                    android:text="@string/nurse_detail5_7" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                    android:text="@string/policy6_detail3_6" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/nurse_detail6"
-                    android:textSize="20dp" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="150dp"
-                    android:src="@drawable/policy7"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/nurse_detail7"
-                    android:textSize="24dp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:text="@string/nurse_detail7_1" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="25dp"
                     android:textSize="10dp"
-                    android:text="@string/nurse_detail7_2" />
+                    android:text="@string/policy6_detail3_7" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:textSize="10dp"
-                    android:text="@string/nurse_detail7_3" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:text="@string/nurse_detail7_4" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:text="@string/nurse_detail7_5" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:text="@string/nurse_detail7_6" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:textSize="10dp"
-                    android:text="@string/nurse_detail7_7" />
+                    android:layout_marginLeft="30dp"
+                    android:textSize="8dp"
+                    android:text="@string/policy6_detail3_8" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

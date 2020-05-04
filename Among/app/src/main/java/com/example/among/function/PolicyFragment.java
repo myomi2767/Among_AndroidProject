@@ -17,6 +17,7 @@ import com.example.among.function.detail.PolicyDetailFragment2;
 import com.example.among.function.detail.PolicyDetailFragment3;
 import com.example.among.function.detail.PolicyDetailFragment4;
 import com.example.among.function.detail.PolicyDetailFragment5;
+import com.example.among.function.detail.PolicyDetailFragment6;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
@@ -53,14 +54,15 @@ public class PolicyFragment extends Fragment {
         card_list = (RecyclerView)viewGroup.findViewById(R.id.card_list);
 
         ArrayList<PolicyViewItem> recycle_card_data = new ArrayList<PolicyViewItem>();
-        PolicyViewItem[] item = new PolicyViewItem[5];
+        PolicyViewItem[] item = new PolicyViewItem[6];
         item[0] = new PolicyViewItem("치매검진사업");
         item[1] = new PolicyViewItem("치매치료관리비지원사업");
         item[2] = new PolicyViewItem("노인실명예방관리사업");
         item[3] = new PolicyViewItem("노인맞춤돌봄서비스");
-        item[4] = new PolicyViewItem("노인주거복지시설");
+        item[4] = new PolicyViewItem("노인돌봄종합서비스사업");
+        item[5] = new PolicyViewItem("노인주거복지시설");
 
-        for(int i=0;i<5;i++){
+        for(int i=0;i<6;i++){
             recycle_card_data.add(item[i]);
         }
 
@@ -86,6 +88,9 @@ public class PolicyFragment extends Fragment {
                         break;
                     case 4:
                         fragment = new PolicyDetailFragment5();
+                        break;
+                    case 5:
+                        fragment = new PolicyDetailFragment6();
                         break;
                 }
                /* getChildFragmentManager().beginTransaction()

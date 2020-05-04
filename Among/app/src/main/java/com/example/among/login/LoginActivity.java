@@ -55,6 +55,8 @@ public class LoginActivity extends AppCompatActivity {
     SQLiteDatabase db;
     DBHandler handler;
     MemberDTO member;
+    String userID;
+    String password;
     int mode;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -106,10 +108,10 @@ public class LoginActivity extends AppCompatActivity {
                 if (loginResult.getSuccess() != null) {
                     updateUiWithUser(loginResult.getSuccess());
                 }
-                setResult(Activity.RESULT_OK);
+                //setResult(Activity.RESULT_OK);
                 //고쳐야하는 부분 로그인이 성공하면 메인뷰로 옮기는 것.....
                 //Complete and destroy login activity once successful
-                finish();
+                //finish();
             }
         });
 
@@ -148,8 +150,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 loadingProgressBar.setVisibility(View.VISIBLE);
-                String userID = usernameEditText.getText().toString();
-                String password = passwordEditText.getText().toString();
+                userID = usernameEditText.getText().toString();
+                password = passwordEditText.getText().toString();
 
                 member = new MemberDTO(userID,password);
                 HttpLogin task = new HttpLogin();
@@ -164,7 +166,7 @@ public class LoginActivity extends AppCompatActivity {
     private void updateUiWithUser(LoggedInUserView model) {
         String welcome = getString(R.string.welcome) + model.getDisplayName();
         // TODO : initiate successful logged in experience
-        Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
     }
 
     private void showLoginFailed(@StringRes Integer errorString) {
@@ -185,7 +187,7 @@ public class LoginActivity extends AppCompatActivity {
             try {
                 object.put("userID",memberDTOS[0].getUserID());
                 object.put("password",memberDTOS[0].getPassword());
-                url = new URL("http://172.20.10.4:8088/among/member/login.do");
+                url = new URL("http://70.12.227.61:8088/among/member/login.do");
 
                 OkHttpClient client = new OkHttpClient();
                 String json = object.toString();
@@ -214,12 +216,14 @@ public class LoginActivity extends AppCompatActivity {
             if(s.equals("true")&mode==0){
                 //자녀단 모드
                 Intent intent = new Intent(LoginActivity.this, childrenActivity.class);
+                intent.putExtra("userID",userID);
                 startActivity(intent);
                 finish();
                 Log.d("msg","자녀");
             }else if(s.equals("true")&mode==1){
                 //부모님단 모드
                 Intent intent = new Intent(LoginActivity.this, Parents.class);
+                intent.putExtra("userID",userID);
                 startActivity(intent);
                 finish();
                 Log.d("msg","부모님");
