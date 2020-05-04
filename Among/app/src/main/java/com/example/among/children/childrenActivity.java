@@ -13,6 +13,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.among.R;
+import com.example.among.calendar.CalendarFragment;
+import com.example.among.chatting.ChattingFragment;
+import com.example.among.chatting.FriendFragment;
 import com.example.among.children.fragment.chatFragment;
 import com.example.among.children.fragment.communityFragment;
 import com.example.among.children.fragment.homeFragment;
@@ -24,6 +27,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class childrenActivity extends AppCompatActivity {
 
+
     private BottomNavigationView bottomNavigation;
     private FloatingActionButton fab;
     private Toolbar toolbar;
@@ -34,9 +38,7 @@ public class childrenActivity extends AppCompatActivity {
 
         //앱바
         toolbar=findViewById(R.id.toolbar);
-        toolbar.setTitle("AMONG");
-        toolbar.setTitleTextColor(Color.WHITE);
-        setSupportActionBar(toolbar);
+        getSupportActionBar();
 
 
         //바텀 네비
@@ -58,19 +60,19 @@ public class childrenActivity extends AppCompatActivity {
                 @Override public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                     switch (item.getItemId()) {
                         case R.id.navigation_home :
-                            openFragment(homeFragment.newInstance("", ""));
+                            openFragment(FriendFragment.newInstance("", ""));
                             return true;
                         case R.id.navigation_wellfare:
                             openFragment(PolicyCareFragment.newInstance("",""));
                             return true;
                         case R.id.navigation_chat:
-                            openFragment(chatFragment.newInstance("", ""));
+                            openFragment(ChattingFragment.newInstance("", ""));
                             return true;
                         case R.id.navigation_community:
                             openFragment(communityFragment.newInstance("", ""));
                             return true;
                         case R.id.navigation_question:
-                            openFragment(scheduleFragment.newInstance("", ""));
+                            openFragment(CalendarFragment.newInstance("", ""));
                             return true;
                     }
                     return false;
@@ -78,7 +80,7 @@ public class childrenActivity extends AppCompatActivity {
             };
     //FloatingActionButton을 눌렀을 때 홈화면이 보이도록 구현
     public void home_btn(View v){
-        openFragment(homeFragment.newInstance("", ""));
+        openFragment(FriendFragment.newInstance("", ""));
     }
 
 }

@@ -3,9 +3,10 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
-    <color name="colorbackground">#FFFAC9</color>
+    <color name="colorbackground">#FFFBD5</color>
     <color name="colorMonth">#FFCECE</color>
     <color name="notMonth">#FFFFFF</color>
     <color name="font">#FFFFFF</color>
-    <color name="appbar">#FFC107</color>
+    <color name="appbar">#FFE185</color>
+    <color name="syAppbar">#6A413E</color>
 </resources>
