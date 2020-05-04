@@ -3,8 +3,11 @@ package com.example.among.function;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
+import android.view.SurfaceControl;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -38,8 +41,9 @@ public class PolicyCareFragment extends Fragment implements MyReplaceFragment{
     }
     @Override
     public void onClick(Fragment fragment) {
-        getChildFragmentManager().beginTransaction()
-                .replace(R.id.content_container,fragment).commit();
+        FragmentManager fragmentManager = getChildFragmentManager();
+        FragmentTransaction transaction =  fragmentManager.beginTransaction();
+        transaction.replace(R.id.content_container,fragment).addToBackStack(null).commit();
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -74,8 +78,8 @@ public class PolicyCareFragment extends Fragment implements MyReplaceFragment{
                     //요양보험운영
                     fragment = careFragment;
                 }
-                getChildFragmentManager().beginTransaction()
-                        .replace(R.id.content_container,fragment).commit();
+                getChildFragmentManager().beginTransaction().replace(R.id.content_container,fragment)
+                        .addToBackStack(null).commit();
             }
 
             @Override

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="nurse_detail1">□ 목적</string>
+    <string name="nurse_detail1_1">● 노인이 활기차고 건강한 노후생활을 영위할 수 있도록 공익활동, 일자리, 재능나눔 등 다양한 사회활동을 지원하여 노인복지 향상에 기여</string>
+    <string name="nurse_detail2">□ 참여 대상</string>
+    <string name="nurse_detail2_1">● 공익활동 · 재능나눔활동 : 만 65세 이상 사업 참여 가능자</string>
+    <string name="nurse_detail2_2">* 공익활동은 기초연금수급자만 가능</string>
+    <string name="nurse_detail2_3">● 시장형 : 만 60세 이상 사업 참여 가능자</string>
+    <string name="nurse_detail3">□ 사업유형</string>
+    <string name="nurse_detail4">□ 수행기관</string>
+    <string name="nurse_detail4_1">● 참여자 활동 지원 등 노인 일자리 및 사회활동 지원 사업을 직접적으로 수행하는 기관</string>
+    <string name="nurse_detail4_2">- 시군구(노인복지 담당과), 노인복지관, 시니어클럽, 대한노인회 취업지원센터, 종합사회복지관, 노인복지센터, 지역문화원, 지자체 전담기관(실버인력뱅크 등)</string>
+
+    <string name="nurse_detail5">□ 노인 일자리 및 사회활동 지원사업 참여방법</string>
+    <string name="nurse_detail5_1">● 시 · 군 · 구 또는 수행기관(모집기관)에 관련서류를 제출 및 상담</string>
+    <string name="nurse_detail5_2">- 참여신청서, 개인정보 수집 · 이용에 관한 동의서(자필서명), 해당 활동 관련 자격증 사본(해당자에 한함) 등</string>
+    <string name="nurse_detail5_3">※ 수행기관 신청시 주민등록등본 첨부</string>
+    <string name="nurse_detail5_4">● 참여자 선발(시 · 군 · 구 또는 수행기관)</string>
+    <string name="nurse_detail5_5">- 관련 서류와 전산시스템(사회보장정보시스템, 새누리시스템)을 통한
+        국민기초생활수급 여부 등 자격확인 후 참여자 선발기준에 따라 고득점자 순으로 선정(공익활동은 시 · 군 · 구 최종선발)</string>
+    <string name="nurse_detail5_6">● 사업 참여</string>
+    <string name="nurse_detail5_7">- 선발된 자는 사업별로 해당 협약서를 작성하거나 근로계약을 체결하고
+        관련 교육 실시 후 사업 수행</string>
+    <string name="nurse_detail6">□ 참여자 선발기준</string>
+    <string name="nurse_detail7">□ 선발 제외</string>
+    <string name="nurse_detail7_1">● 국민기초생활보장법에 의한 생계급여, 의료급여 수급자</string>
+    <string name="nurse_detail7_2">※ 국가유공자, 북한이탈주민 등의 사유로 인한 의료급여 1종은 참여가능</string>
+    <string name="nurse_detail7_3">※ 단, 시장형사업단은 의료급여 2종 수급자 허용</string>
+    <string name="nurse_detail7_4">● 국민건강보험 직장가입자(인력파견형사업단 제외)</string>
+    <string name="nurse_detail7_5">● 장기요양보험 등급판정자(1 ∼5등급, 인지지원등급)</string>
+    <string name="nurse_detail7_6">● 정부부처 및 지자체에서 추진 중인 일자리사업 참여자</string>
+    <string name="nurse_detail7_7">- 예) 안전행정부 희망근로사업, 노동부의 사회적일자리사업 등</string>
+    <!-- **********************************************************************************8 -->
+
+    <string name="nurse2_detail1">□ 목적</string>
+    <string name="nurse2_detail1_1">● 노인의 경륜을 사회에 재투자할 수 있도록 노인자원봉사를 활성화하여 노인의 적극적 사회참여 및 노인의 인적자원 활용 극대화 추진</string>
+    <string name="nurse2_detail2">□ 서비스 내용</string>
+    <string name="nurse2_detail2_1">● 전문 노인자원봉사 프로그램 지원</string>
+    <string name="nurse2_detail2_2">- 위탁사업 수행기관을 선정하여 은퇴 노인의 경험과 지식을 활용한 전문적인 봉사활동이 활성화 될 수 있도록 전문 노인자원봉사 프로그램 지원</string>
+    <string name="nurse2_detail2_3">· 노인 전문자원봉사 프로그램 개발 · 보급, 노인 전문자원봉사단 선정 및 지원 업무 수행</string>
+    <string name="nurse2_detail2_4">● 대한노인회 노인자원봉사센터 지원</string>
+    <string name="nurse2_detail2_5">- 노인자원봉사클럽 운영 지원 및 노인자원봉사자 교육, 대외 홍보, 지역사회 네트워크 구축, 노인자원봉사 홈페이지 운영 등 노인자원봉사 활성화 지원</string>
+    <string name="nurse2_detail2_6">· 경로당 중심의 노인자원봉사클럽을 조직 · 운영하여 월 2회 이상 활동시 운영비 지원</string>
+    <string name="nurse2_detail2_7">- 역량있는 리더를 육성하여 지역사회를 변화시키는 다양한 노인자원봉사활동 지원</string>
+    <string name="nurse2_detail2_8">● 전국노인자원봉사대축제 개최</string>
+    <string name="nurse2_detail2_9">- 노인자원봉사자간 교류 활성화 및 노인자원봉사활동에 대한 다양한 정보공유의 기회를 마련하기 위해 매년 하반기 노인자원봉사클럽 및 봉사단 소속 자원봉사자 및 관계자, 수행기관 실무자가 참여하는 전국노인자원봉사대축제 개최</string>
+    <string name="nurse2_detail2_10">· 우수 자원봉사자 시상, 노인자원봉사 프로그램 우수사례 발표, 노인자원봉사 리더십 교육, 노인자원봉사단 공연, 포토스토리 및 영상 공모전 전시 등의 행사 진행</string>
+    <!-- **********************************************************************************8 -->
+    <string name="nurse3_detail1">□ 장사정책 추진방향</string>
+    <string name="nurse3_detail1_1">[자연친화적이고 지속가능한 장사문화 정착]</string>
+    <string name="nurse3_detail1_2">매장위주의 장사제도를 합리적으로 개선하고 화장문화로의 전환을
+        도모함으로써 국민의 보건위생상의 위해를 방지하고, 국토의 효율적 이용과 공공복리 증진에 이바지</string>
+
+    <string name="nurse3_detail2">□ 매장</string>
+    <string name="nurse3_detail2_1">● 매장(埋葬)의 정의</string>
+    <string name="nurse3_detail2_2">- ‘ 매장’ : 시신이나 유골을 땅에 묻어 장사하는 것</string>
+    <string name="nurse3_detail2_3">- ‘ 분묘’ : 시신이나 유골을 매장하는 시설, ‘ 묘지’ 는 분묘를 설치하는 구역</string>
+    <string name="nurse3_detail2_4">● 매장의 시기</string>
+    <string name="nurse3_detail2_5">- 사망 또는 사산한 때부터 24시간이 지나야 할 수 있음</string>
+    <string name="nurse3_detail2_6">● 매장의 장소</string>
+    <string name="nurse3_detail2_7">- 누구든지 공설묘지 또는 사설묘지에만 매장할 수 있음</string>
+    <string name="nurse3_detail2_8">- 매장은[장사 등에 관한법령]에 따라 신고 또는 허가된 묘지에서만 가능하므로 신고 또는 허가를 받은 묘지에 매장한 시신이나 유골만 매장신고 수리가 가능함</string>
+    <string name="nurse3_detail2_9">● 매장의 방법 및 처리기준</string>
+    <string name="nurse3_detail2_10">- 공중위생에 해를 끼치지 아니하도록 하여야 함</string>
+    <string name="nurse3_detail2_11">· 시신 또는 화장하지 아니한 유골은 위생적으로 처리하여야 하며, 매장 깊이는 지면으로부터 1m 이상이어야 함</string>
+    <string name="nurse3_detail2_12">· 화장한 유골을 매장하는 경우 매장 깊이는 지면으로부터 30㎝ 이상 이어야 함</string>
+    <string name="nurse3_detail2_13">● 매장신고</string>
+    <string name="nurse3_detail2_14">- 신고유형 : 사후 신고제</string>
+    <string name="nurse3_detail2_15">- 신고의무자 : 매장을 한 자</string>
+    <string name="nurse3_detail2_16">- 신고기한 : 매장 후 30일 이내</string>
+    <string name="nurse3_detail2_17">- 신고기관 : 매장지를 관할하는 특별자치도지사 · 시장 · 군수 · 구청장</string>
+
+    <string name="nurse3_detail3">□ 개장</string>
+    <string name="nurse3_detail3_1">● 개장(改葬)의 정의</string>
+    <string name="nurse3_detail3_2">- 매장한 시신이나 유골을 다른 분묘 또는 봉안시설에 옮기거나 화장 또는 자연장하는 것</string>
+    <string name="nurse3_detail3_3">● 개장의 방법</string>
+    <string name="nurse3_detail3_4">- 개장하여 매장 또는 화장하는 경우에는 시행령 제7조 제1호 또는 제2호의 규정에 의한 매장 또는 화장의 방법 및 기준에 따라야 하며, 개장으로 인한 종전의 분묘는 시체 또는 유골을 처리한 후 파묻어야 함</string>
+    <string name="nurse3_detail3_5">● 개장신고</string>
+    <string name="nurse3_detail3_6">- 신고유형 : 사전 신고제</string>
+    <string name="nurse3_detail3_7">- 신고의무자 : 개장을 하려는자</string>
+    <string name="nurse3_detail3_8">- 신고기관 : 시신 · 유골을 현존지 · 개장지를 관할하는 특별자치도지사 · 시장 · 군수 · 구청장</string>
+    <string name="nurse3_detail3_9">· 매장한 시신 또는 유골을 다른 분묘로 옮기거나 화장하는 경우 시신 또는 유골의 현존지와 개장지 2곳에 각각 신고해야 함 (개장지에 별도 매장신고는 하지 않음)</string>
+    <string name="nurse3_detail3_10">· 매장한 시신 또는 유골을 봉안하거나 자연장하는 경우 시신 또는 유골의 현존지에 신고</string>
+    <string name="nurse3_detail3_11">· 봉안한 유골을 다른 분묘로 옮기는 경우 개장지에 신고</string>
+    <string name="nurse3_detail3_12">- 구비서류 : 기존 분묘의 사진, 설치기간이 종료된 분묘의 경우에는 통보문 또는 공고문</string>
+    <string name="nurse3_detail3_13">● 개장허가</string>
+    <string name="nurse3_detail3_14">- 허가유형 : 사전 허가제</string>
+    <string name="nurse3_detail3_15">- 허가신청의무자 :토지 소유자(점유자나 관리인 포함), 묘지 설치자 또는 연고자</string>
+    <string name="nurse3_detail3_16">- 허가신청 대상</string>
+    <string name="nurse3_detail3_17">· 토지 소유자의 승낙 없이 해당 토지에 설치한 분</string>
+    <string name="nurse3_detail3_18">· 묘지 설치자 또는 연고자의 승낙 없이 해당 묘지에 설치한 분묘</string>
+    <string name="nurse3_detail3_19">- 구비서류</string>
+    <string name="nurse3_detail3_20">· 기존 분묘의 사진</string>
+    <string name="nurse3_detail3_21">· 분묘의 연고자를 알지 못하는 사유</string>
+    <string name="nurse3_detail3_22">· 묘지 또는 토지가 개장 허가신청인의 소유임을 증명하는 서류</string>
+    <string name="nurse3_detail3_23">· [부동산등기법] 등 관계 법령에 따라 해당 토지 등의 사용에 관하여 해당 분묘 연고자의 권리가 없음을 증명하는 서류</string>
+    <string name="nurse3_detail3_24">· 통보문 또는 공고문</string>
+
+    <string name="nurse3_detail4">□ 분묘와 묘지</string>
+    <string name="nurse3_detail4_1">● 분묘(墳墓)의 정의</string>
+    <string name="nurse3_detail4_2">- 시신이나 유골을 매장하는 시설 (墓地 : 분묘를 설치하는 구역)</string>
+    <string name="nurse3_detail4_3">● 분묘의 점유면적</string>
+    <string name="nurse3_detail4_4">- 개인묘지의 면적 : 30㎡이하 (합장의 경우에도 동일)</string>
+    <string name="nurse3_detail4_5">- 가족묘지등 면적 : 분묘 1기 및 그 분묘의 상석 · 비석 등 시설물을 설치하는 구역의 면적을 포함하여 10㎡를 초과할 수 없음 (합장의 경우에는 15㎡이하)</string>
+    <string name="nurse3_detail4_6">● 분묘 1기당 시설물의 설치기준</string>
+    <string name="nurse3_detail4_7">- 비석 1개 (높이는 지면으로부터 2m 이하, 그 표면적은 3㎡ 이하)</string>
+    <string name="nurse3_detail4_8">- 상석 1개</string>
+    <string name="nurse3_detail4_9">- 그 밖의 석물(인물상 제외) 1개 또는 1쌍(높이는 지면으로부터 2m 이하)</string>
+    <string name="nurse3_detail4_10">※ 분묘 및 그 분묘의 상석 · 비석 등 시설물은 묘지구역내에 설치하여야 함</string>
+    <string name="nurse3_detail4_11">- 개수명령 등의 행정처분 (법인묘지의 경우 과징금)</string>
+    <string name="nurse3_detail4_12">- 1년 이하의 징역 또는 500만원 이하의 벌금</string>
+    <string name="nurse3_detail4_13">- 대리인 등이 위반행위를 한 경우 당해 행위자(대리인 등) 뿐만 아니라 그 개인에 대하여도 500만원 이하의 벌금</string>
+    <string name="nurse3_detail4_14">- 묘지의 개수명령을 받고 이행하지 아니한 해당 묘지의 연고자는 500만원의 이행강제금 부과</string>
+
+    <string name="nurse3_detail5">● 묘지의 종류</string>
+    <string name="nurse3_detail5_1">- 공설묘지 : 지방자치단체가 설치 · 관리하는 묘지</string>
+    <string name="nurse3_detail5_2">- 사설묘지 : 개인, 가족, 종중 · 문중, 법인 묘지</string>
+    <string name="nurse3_detail5_3">● 공통설치기준</string>
+    <string name="nurse3_detail5_4">- 분묘의 형태는 봉분 또는 평분으로 하되, 봉분의 높이는 지면으로부터 1m, 평분의 높이는 50㎝이하여야 함</string>
+    <string name="nurse3_detail5_5">- 묘지는 지형 · 배수 · 토양 등을 고려하여 붕괴 · 침수의 우려가 없는 곳에 신고(허가)면적 안에 설치하여야 함</string>
+    <string name="nurse3_detail5_6">- 묘지 중 분묘가 설치되지 아니한 지역은 잔디 · 화초 · 수목 등을 녹화하여야 함</string>
+    <string name="nurse3_detail5_7">- 묘지는 다음의 장소에 설치하여야 함. 다만, 토지나 지형의 상황으로 보아 다음시설의 기능이나 이용 등에 지장이 없는 경우로서 특별자치도지사 · 시장 · 군수 · 구청장이 인정하는 경우에는 그러하지 아니함</string>
+    <string name="nurse3_detail5_8">· [도로법] 제2조의 도로, [철도산업발전 기본법] 제3조제2호가목의 철도의 선로, [하천법] 제2조제2호의 하천구역 또는 그 예정지역으로부터 300m 이상 떨어진 곳</string>
+    <string name="nurse3_detail5_9">· 20호 이상의 인가밀집지역, 학교, 그 밖에 공중이 수시로 집합하는 시설 또는 장소로부터 500m 이상 떨어진 곳 (개인, 가족묘지인 경우에는 각각 200m, 300m 적용)</string>
+    <string name="nurse3_detail5_10">● 묘지 설치신고</string>
+
+    <string name="nurse3_detail6_1">□ 화장</string>
+    <string name="nurse3_detail6_2">● 화장(火葬)의 정의 : 화장의 대상는 시신, 죽은태아, 개장유골에 한하여야 함.</string>
+    <string name="nurse3_detail6_3">● 화장의 시기</string>
+    <string name="nurse3_detail6_4">- 사망 또는 사산한 때부터 24시간이 지나야 할 수 있음</string>
+    <string name="nurse3_detail6_5">● 화장을 할 수 있는 시설 또는 장소</string>
+    <string name="nurse3_detail6_6">- 누구든지 화장시설에서만 화장할 수 있음</string>
+    <string name="nurse3_detail6_7">● 화장의 방법과 기준</string>
+    <string name="nurse3_detail6_8">- 시신 또는 화장하지 아니한 유골은 공중위생에 해를 끼치지 아니 하도록 완전히 태워야 함</string>
+    <string name="nurse3_detail6_9">- 화장할 때 관속에는 화학합성섬유, 비닐제품 등 환경오염 발생물질 및 화장로의 작동오류나 폭발위험의 원인이 되는 물질(휴대전화, 심박조율기, 병 등의 금속, 유리 · 탄소 제품을 포함한다)을 넣어서는 아니됨</string>
+    <string name="nurse3_detail6_10">● 화장신고</string>
+    <string name="nurse3_detail6_11">- 신고유형 : 사전 신고제</string>
+    <string name="nurse3_detail6_12">- 신고의무자 : 화장을 하려는 자</string>
+    <string name="nurse3_detail6_13">- 신고기관 : 화장시설을 관할하는 특별자치도지사 · 시장 · 군수 · 구청장</string>
+    <string name="nurse3_detail6_14">- 구비서류 : 사망진단서(시체검안서) 또는 읍면동장의 확인서(죽은 태아의 경우 제외)</string>
+
+    <string name="nurse3_detail7_1">□ 봉안시설</string>
+    <string name="nurse3_detail7_2">● 봉안(奉安)의 정의</string>
+    <string name="nurse3_detail7_3">- ‘ 봉안’ : 유골을 봉안시설에 안치하는 것을 말함</string>
+    <string name="nurse3_detail7_4">- ‘ 봉안시설’ : 봉안묘 · 봉안당 · 봉안탑 등 유골을 안치하는 시설을 말함</string>
+    <string name="nurse3_detail7_5">- 봉안묘 : 분묘의 형태로 된 봉안시설</string>
+    <string name="nurse3_detail7_6">- 봉안당 : [건축법] 제2조제1항제2호의 건축물인 봉안시설</string>
+    <string name="nurse3_detail7_7">- 봉안탑 : 탑의 형태로 된 봉안시설</string>
+    <string name="nurse3_detail7_8">- 봉안담 : 벽과 담의 형태로 된 봉안시설</string>
+    <string name="nurse3_detail7_9">● 설치기준</string>
+
+    <string name="nurse3_detail8">□ 자연장</string>
+    <string name="nurse3_detail8_1">● 자연장(自然葬)의 정의</string>
+    <string name="nurse3_detail8_2">- 화장한 유골의 골분을 수목 · 화초 · 잔디 등의 밑이나 주변에 장사하는 것</string>
+    <string name="nurse3_detail8_3">● 자연장의 방법</string>
+    <string name="nurse3_detail8_4">- 자연장을 하는 자는 화장한 유골을 묻기에 적합하도록 분골하여야 하며, 화장한 유골의 골분, 흙, 용기외의 유품 등을 함께 묻어서는 안됨</string>
+    <string name="nurse3_detail8_5">● 자연장에 사용하는 용기</string>
+    <string name="nurse3_detail8_6">- 「자원의 절약과 재활용촉진에 간한 법률」제2조제16호에 따른 생분해성수지제품</string>
+    <string name="nurse3_detail8_7">- 전분 등 천연소재로서 생화학적으로 분해가 가능한 것</string>
+    <string name="nurse3_detail8_8">● 설치기준</string>
+
+</resources>

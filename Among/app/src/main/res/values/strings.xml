@@ -13,6 +13,5 @@
     <string name="title_chat">채팅</string>
     <string name="title_community">커뮤니티</string>
     <string name="title_calendar">일정</string>
-
-
+    <string name="hello_blank_fragment">하이</string>
 </resources>
