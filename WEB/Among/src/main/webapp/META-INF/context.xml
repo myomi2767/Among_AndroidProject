@@ -27,7 +27,7 @@
     -->
     <Resource name="jdbc/myspring" auth="Container"
               type="javax.sql.DataSource" driverClassName="oracle.jdbc.driver.OracleDriver"
-              url="jdbc:oracle:thin:@172.30.1.48:1521:xe"
-              username="among" password="among" maxTotal="20" maxIdle="10"
+              url="jdbc:oracle:thin:@192.168.43.229:1521:xe"
+              username="among" password="app" maxTotal="20" maxIdle="10"
               maxWaitMillis="-1"/>
 </Context>
