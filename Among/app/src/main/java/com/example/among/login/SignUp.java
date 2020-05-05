@@ -84,10 +84,14 @@ public class SignUp extends AppCompatActivity {
                 String gen = rb.getTag().toString();
 
                 Log.d("msg",token);
-                member = new MemberDTO(id, na, pass, num, bir, gen, token);
+                if(pass.length()<6){
+                    Toast.makeText(SignUp.this,"비밀번호 6자리 이상으로 작성해 주세요.",Toast.LENGTH_LONG).show();
+                }else{
+                    member = new MemberDTO(id, na, pass, num, bir, gen, token);
 
-                HttpInsert task = new HttpInsert();
-                task.execute(member);
+                    HttpInsert task = new HttpInsert();
+                    task.execute(member);
+                }
             }
         });
 
@@ -138,7 +142,7 @@ public class SignUp extends AppCompatActivity {
                 object.put("birth",memberDTOS[0].getBirth());
                 object.put("gender",memberDTOS[0].getGender());
                 object.put("token",memberDTOS[0].getToken());
-                url = new URL("http://70.12.227.61:8088/among/member/insert.do");
+                url = new URL("http://172.30.1.46:8088/among/member/insert.do");
 
                 OkHttpClient client = new OkHttpClient();
                 String json = object.toString();
@@ -200,7 +204,7 @@ public class SignUp extends AppCompatActivity {
             String data;
             String str="";
             try {
-                url = new URL("http://70.12.227.61:8088/among/member/chk.do");
+                url = new URL("http://172.30.1.46:8088/among/member/chk.do");
 
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("POST");

@@ -51,7 +51,7 @@ public class childrenActivity extends AppCompatActivity {
     public void openFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.container, fragment);
-        //transaction.addToBackStack(null); //이게 쌓이는거
+        transaction.addToBackStack(null); //이게 쌓이는거
         transaction.commit();
     }
 
