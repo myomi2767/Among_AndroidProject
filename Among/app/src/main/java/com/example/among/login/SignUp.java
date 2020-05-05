@@ -84,10 +84,14 @@ public class SignUp extends AppCompatActivity {
                 String gen = rb.getTag().toString();
 
                 Log.d("msg",token);
-                member = new MemberDTO(id, na, pass, num, bir, gen, token);
+                if(pass.length()<6){
+                    Toast.makeText(SignUp.this,"비밀번호 6자리 이상으로 작성해 주세요.",Toast.LENGTH_LONG).show();
+                }else{
+                    member = new MemberDTO(id, na, pass, num, bir, gen, token);
 
-                HttpInsert task = new HttpInsert();
-                task.execute(member);
+                    HttpInsert task = new HttpInsert();
+                    task.execute(member);
+                }
             }
         });
 

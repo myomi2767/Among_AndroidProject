@@ -16,6 +16,7 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -28,8 +29,8 @@
         android:usesCleartextTraffic="true">
 
         <!-- <activity android:name=".act"></activity> -->
-        <!-- <activity android:name=".parents.Parents"></activity> -->
-        <activity android:name=".chatting.ChatActivity"></activity>
+        <activity android:name=".parents.VoiceNoti"/>
+        <activity android:name=".chatting.ChatActivity"/>
         <activity android:name=".login.SignUp" />
         <activity android:name=".login.SignUpTerms" />
         <activity android:name=".login.LoginActivity" />
@@ -39,6 +40,7 @@
         <activity android:name=".function.FunctionActivity" />
         <activity android:name=".parents.Parents" />
         <activity android:name=".children.childrenActivity" />
+        <activity android:name=".children.board.BoardSelect" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -55,6 +57,15 @@
                 <action android:name="com.exaple.among.calendar.DEFAULT" />
             </intent-filter>
         </receiver>
+
+        <service
+            android:name=".parents.FirebaseTest"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

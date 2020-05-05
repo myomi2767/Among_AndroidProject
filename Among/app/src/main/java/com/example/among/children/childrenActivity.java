@@ -3,6 +3,7 @@ package com.example.among.children;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -31,6 +32,7 @@ public class childrenActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigation;
     private FloatingActionButton fab;
     private Toolbar toolbar;
+    private String userID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,12 +48,20 @@ public class childrenActivity extends AppCompatActivity {
         bottomNavigation.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
         bottomNavigation.setSelectedItemId(R.id.navigation_home);
 
+        Bundle extras = getIntent().getExtras();
+        userID = extras.getString("userID");
+        Log.d("msg",userID);
+
     }
 
     public void openFragment(Fragment fragment) {
+
+        Bundle bundle = new Bundle();
+        bundle.putString("userID",userID);
+        fragment.setArguments(bundle);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.container, fragment);
-        //transaction.addToBackStack(null); //이게 쌓이는거
+        transaction.addToBackStack(null); //이게 쌓이는거
         transaction.commit();
     }
 
