@@ -7,10 +7,14 @@
 	<typeAliases>
 		<typeAlias type="android.among.member.MemberDTO" alias="member"/>
 		<typeAlias type="android.among.parents.fcm.FCMDTO" alias="fcm"/>
+		<typeAlias type="android.among.community.board.BoardDTO" alias="board"/>
+		<typeAlias type="android.among.community.comment.CommentDTO" alias="comment"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mapper/member.xml"/>
 		<mapper resource="mapper/fcm.xml"/>
+		<mapper resource="mapper/board.xml"/>
+		<mapper resource="mapper/comment.xml"/>
 	</mappers>
 </configuration>
 

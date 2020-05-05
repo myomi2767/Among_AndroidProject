@@ -64,7 +64,7 @@ public class FcmActivity extends AppCompatActivity {
             try {
                 OkHttpClient client = new OkHttpClient();
                 Request.Builder builder = new Request.Builder();
-                builder = builder.url("http://70.12.224.47:8088/among/fcm/fcm_check?token="+token);
+                builder = builder.url("http://192.168.219.106:8088/among/fcm/fcm_check?token="+token);
                 Request request = builder.build();
                 Call newcall = client.newCall(request);
                 newcall.execute();
@@ -85,7 +85,7 @@ public class FcmActivity extends AppCompatActivity {
             try {
                 OkHttpClient client = new OkHttpClient();
                 Request.Builder builder = new Request.Builder();
-                builder = builder.url("http://70.12.224.47:8088/among/fcm/sendClient?id="+id);
+                builder = builder.url("http://192.168.219.106:8088/among/fcm/sendClient?id="+id);
                 Request request = builder.build();
                 Call newcall = client.newCall(request);
                 newcall.execute();
