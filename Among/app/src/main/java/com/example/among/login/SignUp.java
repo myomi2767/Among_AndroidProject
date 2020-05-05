@@ -9,16 +9,25 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.among.R;
+import com.example.among.children.user.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreSettings;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 import com.google.gson.Gson;
@@ -53,6 +62,9 @@ public class SignUp extends AppCompatActivity {
     RadioGroup radioGroup;
     TextView chkText;
 
+    private FirebaseFirestore mDb;
+    private ProgressBar mProgressBar;
+
     MemberDTO member;
     String token;
     @Override
@@ -69,7 +81,13 @@ public class SignUp extends AppCompatActivity {
 
         register = findViewById(R.id.register);
         idChk = findViewById(R.id.certificate);
+
+        mDb = FirebaseFirestore.getInstance();
+        mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
+
+
         tokenMake();
+        hideSoftKeyboard();
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,7 +108,11 @@ public class SignUp extends AppCompatActivity {
                     member = new MemberDTO(id, na, pass, num, bir, gen, token);
 
                     HttpInsert task = new HttpInsert();
+                    //정보 다 입력했으니 파베로 등록
+                    registerNewEmail(id, pass);
+
                     task.execute(member);
+
                 }
             }
         });
@@ -142,7 +164,7 @@ public class SignUp extends AppCompatActivity {
                 object.put("birth",memberDTOS[0].getBirth());
                 object.put("gender",memberDTOS[0].getGender());
                 object.put("token",memberDTOS[0].getToken());
-                url = new URL("http://172.30.1.48:8088/among/member/insert.do");
+                url = new URL("http://192.168.0.56:8088/among/member/insert.do");
 
                 OkHttpClient client = new OkHttpClient();
                 String json = object.toString();
@@ -187,13 +209,13 @@ public class SignUp extends AppCompatActivity {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             if(s.equals("1")){
-                Intent intent = new Intent(SignUp.this,LoginActivity.class);
-                startActivity(intent);
+                redirectLoginScreen();
             }else{
                 Toast.makeText(SignUp.this,"다시작성해 주세요",Toast.LENGTH_LONG).show();
             }
         }
     }
+
 
     class HttpIDChk extends AsyncTask<MemberDTO, Void, String>{
 
@@ -204,7 +226,7 @@ public class SignUp extends AppCompatActivity {
             String data;
             String str="";
             try {
-                url = new URL("http://172.30.1.48:8088/among/member/chk.do");
+                url = new URL("http://192.168.0.56:8088/among/member/chk.do");
 
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("POST");
@@ -238,5 +260,83 @@ public class SignUp extends AppCompatActivity {
                 chkText.setTextColor(Color.parseColor("#CD1212"));
             }
         }
+    }
+
+    private void showDialog(){
+        mProgressBar.setVisibility(View.VISIBLE);
+
+    }
+    private void hideDialog(){
+        if(mProgressBar.getVisibility() == View.VISIBLE){
+            mProgressBar.setVisibility(View.INVISIBLE);
+        }
+    }
+    private void hideSoftKeyboard(){
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+    }
+    private void redirectLoginScreen(){
+        Log.d("파베 아이디 등록", "가입 후 화면전환");
+
+        Intent intent = new Intent(SignUp.this,LoginActivity.class);
+        startActivity(intent);
+        finish();
+    }
+    /**
+     * Register a new email and password to Firebase Authentication
+     * @param userID
+     * @param password
+     */
+    public void registerNewEmail(final String userID, String password){
+
+        showDialog();
+
+        FirebaseAuth.getInstance().createUserWithEmailAndPassword(userID, password)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        Log.d("파베 아이디 등록", "유저 이메일 등록:onComplete:" + task.isSuccessful());
+
+                        if (task.isSuccessful()){
+                            Log.d("파베 아이디 등록", "onComplete: Auth상태: " + FirebaseAuth.getInstance().getCurrentUser().getUid());
+
+                            //insert some default data
+                            User user = new User();
+                            user.setEmail(userID);
+                            user.setUsername(userID.substring(0, userID.indexOf("@")));
+                            user.setUser_id(FirebaseAuth.getInstance().getUid());
+
+                            FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
+                                    .setTimestampsInSnapshotsEnabled(true)
+                                    .build();
+                            mDb.setFirestoreSettings(settings);
+
+                            DocumentReference newUserRef = mDb
+                                    .collection(getString(R.string.collection_users))
+                                    .document(FirebaseAuth.getInstance().getUid());
+
+                            newUserRef.set(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    hideDialog();
+
+                                    if(task.isSuccessful()){
+                                        redirectLoginScreen();
+                                    }else{
+                                        View parentLayout = findViewById(android.R.id.content);
+                                        Snackbar.make(parentLayout, "파베 가입 오류1", Snackbar.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+
+                        }
+                        else {
+                            View parentLayout = findViewById(android.R.id.content);
+                            Snackbar.make(parentLayout, "파베 가입 오류2", Snackbar.LENGTH_SHORT).show();
+                            hideDialog();
+                        }
+
+                        // ...
+                    }
+                });
     }
 }
