@@ -15,6 +15,7 @@
 		<mapper resource="mapper/fcm.xml"/>
 		<mapper resource="mapper/board.xml"/>
 		<mapper resource="mapper/comment.xml"/>
+	
 	</mappers>
 </configuration>
 
