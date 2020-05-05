@@ -1,11 +1,10 @@
 package com.example.among.parents;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.among.R;
 import com.google.android.gms.tasks.OnCompleteListener;

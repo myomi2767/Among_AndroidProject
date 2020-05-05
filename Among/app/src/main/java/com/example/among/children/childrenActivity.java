@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -40,6 +41,7 @@ public class childrenActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigation;
     private FloatingActionButton fab;
     private Toolbar toolbar;
+    private String userID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,9 +59,17 @@ public class childrenActivity extends AppCompatActivity {
         bottomNavigation.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
         bottomNavigation.setSelectedItemId(R.id.navigation_home);
 
+        Bundle extras = getIntent().getExtras();
+        userID = extras.getString("userID");
+        Log.d("msg",userID);
+
     }
 
     public void openFragment(Fragment fragment) {
+
+        Bundle bundle = new Bundle();
+        bundle.putString("userID",userID);
+        fragment.setArguments(bundle);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.container, fragment);
         //transaction.addToBackStack(null); //이게 쌓이는거

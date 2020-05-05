@@ -10,3 +10,29 @@ create table member(
 );
 
 create sequence member_seq;
+
+drop sequence board_seq;
+drop table board;
+
+--------------------------------성현---------------------------------------
+create sequence board_seq start with 1 increment by 1 maxvalue 10000;
+create table board(
+	board_seq number primary key,
+	title varchar2(1000) not null,
+	text varchar2(3000) not null,
+	write_date varchar2(500),
+	user_ID varchar2(20)
+);
+
+drop table reply;
+drop sequence comment_seq;
+
+create sequence comment_seq start with 1 increment by 1 maxvalue 10000;
+create table reply(
+	comment_seq number primary key,
+	mcomment varchar2(3000) not null,
+	writedate varchar2(500),
+	user_ID varchar2(20),
+	board_num number
+);
+--------------------------------성현---------------------------------------
