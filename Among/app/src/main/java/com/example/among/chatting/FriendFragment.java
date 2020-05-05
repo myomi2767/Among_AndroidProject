@@ -40,6 +40,7 @@ public class FriendFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     FloatingActionButton friendFab;
+    FloatingActionButton multiFab;
     LinearLayout searchArea ;
     EditText editEmail;
     ImageButton findBtn;
@@ -72,6 +73,7 @@ public class FriendFragment extends Fragment {
         View viewGroup = (View)LayoutInflater.from(getContext()).inflate(R.layout.fragment_friend, container, false);
         searchArea = viewGroup.findViewById(R.id.search_area);
         friendFab = viewGroup.findViewById(R.id.friendFab);
+        multiFab = viewGroup.findViewById(R.id.friendSelect);
         editEmail = viewGroup.findViewById(R.id.edtContent);
         findBtn = viewGroup.findViewById(R.id.findBtn);
         recyclerView = viewGroup.findViewById(R.id.friendRecyclerView);
@@ -99,6 +101,13 @@ public class FriendFragment extends Fragment {
                 addFriend();
             }
         });
+        multiFab.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                toggleSelectionMode();
+            }
+        });
         // 데이터베이스에서 나의 친구목록을 리스너 통하여 데이터를 가져온다.
         addFriendListener();
         friendsListAdapter = new FriendsListAdapter();
@@ -109,19 +118,33 @@ public class FriendFragment extends Fragment {
                 new RecyclerViewItemClickListener.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
-                        //유저의 정보를 가져와서 Snackbar를 통해 메시지 띄움
                         final User friend = friendsListAdapter.getItem(position);
-                        Snackbar.make(view,friend.getName()+"님과 대화를 하시겠습니까?",
-                                Snackbar.LENGTH_LONG).setAction("예",new View.OnClickListener(){
+                        //유저의 정보를 가져와서 Snackbar를 통해 메시지 띄움
+                        if (friendsListAdapter.getSelectionMode() == friendsListAdapter.UNSELECTION_MODE) {
+                            //final User friend = friendsListAdapter.getItem(position);
+                            Snackbar.make(view, friend.getName() + "님과 대화를 하시겠습니까?",
+                                    Snackbar.LENGTH_LONG).setAction("예", new View.OnClickListener() {
 
-                            @Override
-                            public void onClick(View v) {
-                                Intent chatIntent = new Intent(getActivity(), ChatActivity.class);
-                                chatIntent.putExtra("uid",friend.getUid());
-                                chatIntent.putExtra("uids", friendsListAdapter.getSelectedUids());
-                                startActivityForResult(chatIntent, ChattingFragment.JOIN_ROOM_REQUEST_CODE);
-                            }
-                        }).show();
+                                @Override
+                                public void onClick(View v) {
+                                    Intent chatIntent = new Intent(getActivity(), ChatActivity.class);
+                                    chatIntent.putExtra("uid", friend.getUid());
+                                    chatIntent.putExtra("uids", friendsListAdapter.getSelectedUids());
+                                    startActivityForResult(chatIntent, ChattingFragment.JOIN_ROOM_REQUEST_CODE);
+                                }
+                            }).show();
+                        }else{
+                            friend.setSelection(friend.isSelection() ? false : true);
+                            int selectedUserCount = friendsListAdapter.getSelectUserCount();
+                            Snackbar.make(view, selectedUserCount+"명과 대화를 하시겠습니까?", Snackbar.LENGTH_LONG).setAction("예", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Intent chatIntent = new Intent(getActivity(), ChatActivity.class);
+                                    chatIntent.putExtra("uids", friendsListAdapter.getSelectedUids());
+                                    startActivity(chatIntent);
+                                }
+                            }).show();
+                        }
                     }
                 }));
 
@@ -132,12 +155,12 @@ public class FriendFragment extends Fragment {
     public void toggleSearchBar(){
         searchArea.setVisibility( searchArea.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE );
     }
-    /*public void toggleSelectionMode(){
+    public void toggleSelectionMode() {
         //현재 checkbox가 생성이 되어있는지 확인하는 코드
         friendsListAdapter.setSelectionMode(friendsListAdapter.getSelectionMode()
-                ==FriendsListAdapter.SELECTION_MODE?FriendsListAdapter.UNSELECTION_MODE:
+                == FriendsListAdapter.SELECTION_MODE ? FriendsListAdapter.UNSELECTION_MODE :
                 FriendsListAdapter.SELECTION_MODE);
-    }*/
+    }
     public void addFriend(){
         //입력된 이메일
     final String inputEmail = editEmail.getText().toString();

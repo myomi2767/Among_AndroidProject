@@ -56,16 +56,26 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/friendRecyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_weight="1">
             </androidx.recyclerview.widget.RecyclerView>
         </LinearLayout>
-
-
-       <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="right">
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/friendSelect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/multiuser" />
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/friendFab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
         app:srcCompat="@android:drawable/ic_dialog_email" />
+    </LinearLayout>
+
 
 </LinearLayout>

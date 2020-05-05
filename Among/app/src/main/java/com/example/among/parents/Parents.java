@@ -41,7 +41,6 @@ public class Parents extends AppCompatActivity {
         item.add(new ParentsItem("자녀 8", R.drawable.user));
 
         //자녀 DB가 있어야 실제 통화작업이 가능?!
-
         for(int i=0; i<item.size(); i++){
             itemList.add(item.get(i));
         }
@@ -54,11 +53,8 @@ public class Parents extends AppCompatActivity {
             }
         });
 
-
         ParentsItemAdapter adapter = new ParentsItemAdapter(this, R.layout.farents_item,
                 itemList);
-        /*LinearLayoutManager manager = new LinearLayoutManager(getApplicationContext());
-        manager.setOrientation(LinearLayoutManager.VERTICAL);*/
 
         GridLayoutManager manager = new GridLayoutManager(getApplicationContext(), 2);
         list.setHasFixedSize(true);

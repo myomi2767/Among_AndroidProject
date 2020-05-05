@@ -265,7 +265,7 @@ public class LoginActivity extends AppCompatActivity {
             try {
                 object.put("userID",memberDTOS[0].getUserID());
                 object.put("password",memberDTOS[0].getPassword());
-                url = new URL("http://172.30.1.4:8088/among/member/login.do");
+                url = new URL("http://192.168.219.106:8088/among/member/login.do");
 
                 OkHttpClient client = new OkHttpClient();
                 String json = object.toString();
