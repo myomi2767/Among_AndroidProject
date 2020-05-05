@@ -138,7 +138,7 @@ public class SignUp extends AppCompatActivity {
                 object.put("birth",memberDTOS[0].getBirth());
                 object.put("gender",memberDTOS[0].getGender());
                 object.put("token",memberDTOS[0].getToken());
-                url = new URL("http://70.12.227.61:8088/among/member/insert.do");
+                url = new URL("http://172.30.1.48:8088/among/member/insert.do");
 
                 OkHttpClient client = new OkHttpClient();
                 String json = object.toString();
@@ -200,7 +200,7 @@ public class SignUp extends AppCompatActivity {
             String data;
             String str="";
             try {
-                url = new URL("http://70.12.227.61:8088/among/member/chk.do");
+                url = new URL("http://172.30.1.48:8088/among/member/chk.do");
 
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("POST");
