@@ -19,22 +19,29 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginHorizontal="40dp"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="10dp"
+        >
         <Button
             android:id="@+id/child"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="80dp"
             android:layout_weight="1"
+            android:background="#AFDEE4"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:text="자녀\n모드" />
+            android:text="자녀\n모드"
+            android:layout_marginRight="2dp"
+            android:textStyle="bold"/>
 
         <Button
             android:id="@+id/parent"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="80dp"
             android:layout_weight="1"
+            android:background="#AFDEE4"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:text="부모님\n모드" />
+            android:text="부모님\n모드"
+            android:layout_marginLeft="3dp"
+            android:textStyle="bold"/>
 
     </LinearLayout>
 

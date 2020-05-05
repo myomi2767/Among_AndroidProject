@@ -2,6 +2,7 @@ package com.example.among.login;
 
 import android.app.Activity;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -29,9 +30,32 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.among.R;
+import com.example.among.chatting.ChatLogActivity;
+import com.example.among.chatting.model.User;
 import com.example.among.children.childrenActivity;
+import com.example.among.function.FunctionActivity;
 import com.example.among.parents.FCMActivity;
 import com.example.among.parents.Parents;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -52,6 +76,15 @@ import okhttp3.Response;
 public class LoginActivity extends AppCompatActivity {
 
     private LoginViewModel loginViewModel;
+    SignInButton mSignInBtn;
+    ProgressBar login_process;
+    GoogleSignInClient mGoogleSignInClient;
+    GoogleSignInOptions googleSignInOptions;
+    FirebaseAuth auth;
+    FirebaseAnalytics firebaseAnalytics;
+    FirebaseDatabase database;
+    DatabaseReference UserRef;
+    private static int GOOGLE_LOGIN_OPEN = 100;
     SQLiteDatabase db;
     DBHandler handler;
     MemberDTO member;
@@ -64,6 +97,17 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.login);
         loginViewModel = ViewModelProviders.of(this, new LoginViewModelFactory())
                 .get(LoginViewModel.class);
+        login_process = findViewById(R.id.login_process);
+        mSignInBtn = findViewById(R.id.GoogleSignInButton);
+        firebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        database = FirebaseDatabase.getInstance();
+        UserRef = database.getReference("users");
+
+
+
+
+        // [START initialize_auth]
+        // Initialize Firebase Auth
 
         final EditText usernameEditText = findViewById(R.id.userID);
         final EditText passwordEditText = findViewById(R.id.password);
@@ -79,6 +123,25 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
+        //로그인 앱에 통합하기기
+        auth = FirebaseAuth.getInstance();
+        googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+        // [END config_signin]
+        mSignInBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                signIn();
+            }
+        });
+        mGoogleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions);
+        if(auth.getCurrentUser()!=null){
+            startActivity(new Intent(LoginActivity.this, childrenActivity.class));
+            finish();
+            return;
+        }
         loginViewModel.getLoginFormState().observe(this, new Observer<LoginFormState>() {
             @Override
             public void onChanged(@Nullable LoginFormState loginFormState) {
@@ -161,6 +224,21 @@ public class LoginActivity extends AppCompatActivity {
                         passwordEditText.getText().toString());*/
             }
         });
+        if(auth.getCurrentUser()!=null){
+            if(mode==0){
+                startActivity(new Intent(LoginActivity.this, childrenActivity.class));
+                finish();
+            }else{
+                startActivity(new Intent(LoginActivity.this,Parents.class));
+                finish();
+            }
+            return;
+        }
+    }
+    private void signIn() {
+        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+        startActivityForResult(signInIntent, GOOGLE_LOGIN_OPEN);
+
     }
 
     private void updateUiWithUser(LoggedInUserView model) {
@@ -187,7 +265,7 @@ public class LoginActivity extends AppCompatActivity {
             try {
                 object.put("userID",memberDTOS[0].getUserID());
                 object.put("password",memberDTOS[0].getPassword());
-                url = new URL("http://70.12.227.61:8088/among/member/login.do");
+                url = new URL("http://172.30.1.4:8088/among/member/login.do");
 
                 OkHttpClient client = new OkHttpClient();
                 String json = object.toString();
@@ -231,5 +309,86 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(LoginActivity.this,"ID와 비밀번호를 확인해주세요",Toast.LENGTH_LONG).show();
             }
         }
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
+        if (requestCode == GOOGLE_LOGIN_OPEN) {
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            try {
+                // Google Sign In was successful, authenticate with Firebase
+                GoogleSignInAccount account = task.getResult(ApiException.class);
+                firebaseAuthWithGoogle(account);
+            } catch (ApiException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    // [START auth_with_google]
+    private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
+
+        AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null); //자격증명
+        auth.signInWithCredential(credential) //자격증명을 통해 로그인
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() { // AuthResult로 데이터가 넘어옴
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isComplete()) {
+                                    //isComplete : 실패와 성공에 대한 모든 것
+                                    //isSuccessful : 성공을 했을 경우에만 실행
+                                    if (task.isSuccessful()) {
+                                        FirebaseUser firebaseUser = task.getResult().getUser();
+                                        final User user = new User();
+                                        user.setEmail(firebaseUser.getEmail());
+                                        user.setName(firebaseUser.getDisplayName());
+                                        user.setUid(firebaseUser.getUid());
+                                        if (firebaseUser.getPhotoUrl()!=null){
+                                            user.setProfileUrl(firebaseUser.getPhotoUrl().toString());}
+                                        UserRef.child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                if(!dataSnapshot.exists()){
+                                                    //데이터가 존재하지 않을 때만 셋팅
+                                                    UserRef.child(user.getUid()).setValue(user, new DatabaseReference.CompletionListener() {
+                                                        @Override
+                                                        public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
+                                                            //정상적으로 Complete가 된 경우에만 Log를 쌓는다.
+                                                            if(databaseError==null){
+                                                                //Activity 연결
+                                                                startActivity(new Intent(LoginActivity.this, childrenActivity.class));
+                                                                finish();
+
+                                                            }
+                                                        }
+                                                    }); //users밑 userID
+                                                }else{
+                                                    //데이터가 존재한다면 바로 Actiivty 호출
+                                                    startActivity(new Intent(LoginActivity.this, childrenActivity.class));
+                                                    finish();
+                                                }
+                                                //로깅
+                                                Bundle eventBundle = new Bundle();
+                                                eventBundle.putString("email",user.getEmail());
+                                                firebaseAnalytics.logEvent(FirebaseAnalytics.Event.LOGIN,eventBundle);
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                            }
+                                        });
+
+
+                                        //FirebaseUser user = auth.getCurrentUser();
+                                        // 성공을 햇을 때만 가져와야 NullPointerException발생하지 않는다.
+                                    } else {
+                                        Snackbar.make(login_process, "로그인에 실패하였습니다.", Snackbar.LENGTH_SHORT).show();
+                                    }
+
+                                }
+                            }
+                        }
+                );
     }
 }
