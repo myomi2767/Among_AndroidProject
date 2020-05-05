@@ -1,7 +1,12 @@
 package com.example.among.children.user;
 
+import android.Manifest;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,9 +17,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.PermissionChecker;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.among.R;
+import com.example.among.children.map.LocationMap;
 
 import java.util.List;
 
@@ -24,9 +31,6 @@ public class ProfileAdapter
     private Context context;
     private int resId;
     private List<ProfileItem> datalist;
-
-   /* HashMap<Integer, UserState> saveData = new HashMap<Integer, UserState>();
-    ViewHolder viewHolder = new ViewHolder();*/
 
     public ProfileAdapter(Context context, int resId, List<ProfileItem> datalist) {
         this.context = context;
@@ -43,10 +47,13 @@ public class ProfileAdapter
         return new CustomViewHolder(view);
     }
 
+    //목록: 프로필, 이름, 대화명, 지도
     @Override
     public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
         ImageView myImg =holder.myImg;
         myImg.setImageResource(datalist.get(position).profile_img);
+
+        //프로필 사진
         myImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,97 +63,113 @@ public class ProfileAdapter
 
         ImageView myMap =holder.myMap;
         myMap.setImageResource(datalist.get(position).profile_map);
+
+        //지도
         myMap.setOnClickListener(new View.OnClickListener() {
             @Override
              public void onClick(View v) {
-                popupMap();
+                Intent intent = new Intent(context, LocationMap.class);
+                context.startActivity(intent);
             }
         });
 
 
         TextView nameView =holder.nameView;
         nameView.setText(datalist.get(position).profile_name);
+
+        //이름
         nameView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                popup();
+                Toast.makeText(context, "이름 누르면 => 사용자 설정 => 아직 안 함",Toast.LENGTH_SHORT).show();
             }
         });
 
 
         TextView msgView =holder.msgView;
         msgView.setText(datalist.get(position).profile_msg);
+        //알림명
         msgView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                popup();
+                Toast.makeText(context, "알림명 눌으면 => 알림 변경 => 아직 안 함",Toast.LENGTH_SHORT).show();
             }
         });
 
-/*      holder.myImg.setImageResource(datalist.get(position).profile_img);
-        holder.myMap.setImageResource(datalist.get(position).profile_map);
-        holder.nameView.setText(datalist.get(position).profile_name);
-        holder.msgView.setText(datalist.get(position).profile_msg);
-
-        holder.itemView.setTag(position);
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //String crrntName = holder.profile_name.getText().toString(); 이거 대신 아래 text
-                Toast.makeText(v.getContext(), "짧게 클릭하셨습니다.", Toast.LENGTH_SHORT).show();
-                popup();
-
-
-            }
-        });*/
     }
-
+        //프로필 클릭 시 전화, 영통, 닫기, 메세지
         public void popup(){
             final Dialog MyDialog = new Dialog(context);
+
             MyDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
             MyDialog.setContentView(R.layout.activity_click_function);
 
+            Button runCall = (Button)MyDialog.findViewById(R.id.runCall);
+            Button videoCall = (Button)MyDialog.findViewById(R.id.videoCall);
             Button close = (Button)MyDialog.findViewById(R.id.btn_back);
-            Button runCall = (Button)MyDialog.findViewById(R.id.run_call);
+            Button msg = (Button)MyDialog.findViewById(R.id.SendMsg);
 
+            //전화
             runCall.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
-                    Toast.makeText(context, "전화",Toast.LENGTH_SHORT).show();
+                public void onClick(View v) {                    Toast.makeText(context, "전화",Toast.LENGTH_SHORT).show();
+
+
+                    Intent intent1 = null;
+                    int chk = PermissionChecker.checkSelfPermission(context,
+                            Manifest.permission.CALL_PHONE);
+                    if(chk==PackageManager.PERMISSION_GRANTED){
+                        //권한 승락이 된 상태                           //5554번에서 5556번 전화하기
+                        Log.d("tel","성공");
+                        intent1 = new Intent(Intent.ACTION_CALL,Uri.parse("tel:010-1234-1234"));
+
+                    }else {
+                        Log.d("tel","실패");
+                        return;
+                    }
+                    context.startActivity(intent1);
 
                 }
             });
+            //영통
+            videoCall.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(context, "영상통화",Toast.LENGTH_SHORT).show();
+
+                        Intent intent = null;
+                        int chk = PermissionChecker.checkSelfPermission(context,
+                                Manifest.permission.CALL_PHONE);
+                        if(chk== PackageManager.PERMISSION_GRANTED){
+                            intent = new Intent(Intent.ACTION_CALL,
+                                    Uri.parse("tel:010-1234-1234"));
+                            intent.putExtra("andorid.phone.extra.calltype",0);
+                            intent.putExtra("videocall",true);
+                        }else{
+                            Log.d("tel","실패");
+                            return;
+                        }
+                    context.startActivity(intent);
+
+
+                }
+            });
+            //닫기
             close.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     MyDialog.cancel();
                 }
             });
+            //메세지
+            msg.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(context, "메세지",Toast.LENGTH_SHORT).show();
+                }
+            });
             MyDialog.show();
         }
-    public void popupMap(){
-        final Dialog MyDialog = new Dialog(context);
-        MyDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        MyDialog.setContentView(R.layout.activity_click_function);
-
-        Button close = (Button)MyDialog.findViewById(R.id.btn_back);
-        Button runCall = (Button)MyDialog.findViewById(R.id.run_call);
-
-        runCall.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(context, "전화",Toast.LENGTH_SHORT).show();
-
-            }
-        });
-        close.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MyDialog.cancel();
-            }
-        });
-        MyDialog.show();
-    }
 
 
 
@@ -170,4 +193,23 @@ public class ProfileAdapter
 
         }
     }
+
+    //영상 통화 걸기 메소드
+    public void runVideoCallPhone(View v){
+        Intent intent = null;
+        int chk = PermissionChecker.checkSelfPermission(context, Manifest.permission.CALL_PHONE);
+        if(chk== PackageManager.PERMISSION_GRANTED){
+            intent = new Intent(Intent.ACTION_CALL,
+                    Uri.parse("tel:01072971287"));
+            intent.putExtra("andorid.phone.extra.calltype",0);
+            //intent.putExtra("videocall",true);
+        }else{
+            Log.d("tel","실패");
+            return;
+        }
+        context.startActivity(intent);
+    }
+
+
+
 }

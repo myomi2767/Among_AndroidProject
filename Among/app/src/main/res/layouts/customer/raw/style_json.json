@@ -1,0 +1,11 @@
+[
+  {
+    "featureType": "road.highway.controlled_access",
+    "elementType": "geometry.fill",
+    "stylers": [
+      {
+        "color": "#ff8000"
+      }
+    ]
+  }
+]

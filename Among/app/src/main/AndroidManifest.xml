@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.among">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
@@ -19,6 +21,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
+        android:name=".children.map.familyChat.UserClient"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -28,9 +31,13 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
 
-        <!-- <activity android:name=".act"></activity> -->
+
+        <!-- <activity android:name=".parents.Parents"></activity> -->
+
+        <activity android:name=".chatting.ChatActivity"></activity>
+        <activity android:name=".children.map.familyChat.ChatroomActivity"/>
+        <activity android:name=".children.map.familyChat.FamilychatMainActivity"/>
         <activity android:name=".parents.VoiceNoti"/>
-        <activity android:name=".chatting.ChatActivity"/>
         <activity android:name=".login.SignUp" />
         <activity android:name=".login.SignUpTerms" />
         <activity android:name=".login.LoginActivity" />
@@ -57,7 +64,9 @@
                 <action android:name="com.exaple.among.calendar.DEFAULT" />
             </intent-filter>
         </receiver>
-
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAP8aGgJtBB6H8vvcZ9GHXUyTvcWhKS3FM" />
         <service
             android:name=".parents.FirebaseTest"
             android:enabled="true"

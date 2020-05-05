@@ -7,13 +7,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
    >
-<!--    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/appbar"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme" />-->
     <LinearLayout
         android:background="@android:color/transparent"
         android:id="@+id/search_area"
@@ -31,7 +24,7 @@
             android:layout_weight="8"
 
             android:background="#fff"
-            android:hint="친구 이메일 검색"
+            android:hint="이메일로 친구 추가하기"
             android:layout_marginTop="10dp"
             android:inputType="textMultiLine"
             android:maxLines="1"
@@ -46,6 +39,12 @@
             android:padding="5dp"
             android:scaleType="centerCrop"
             android:src="@android:drawable/ic_search_category_default" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+
     </LinearLayout>
 
     <LinearLayout

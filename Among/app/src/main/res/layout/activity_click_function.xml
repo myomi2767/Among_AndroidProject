@@ -14,16 +14,16 @@
         android:layout_margin="10dp">
 
         <Button
-            android:id="@+id/run_call"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:id="@+id/runCall"
+            android:layout_width="120dp"
+            android:layout_height="100dp"
             android:layout_margin="10dp"
             android:text="전화"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:onClick="runCall"/>
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
         <Button
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:id="@+id/videoCall"
+            android:layout_width="120dp"
+            android:layout_height="100dp"
             android:text="영상통화"
             android:layout_margin="10dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
@@ -35,17 +35,17 @@
         android:layout_margin="10dp">
         <Button
             android:id="@+id/btn_back"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="120dp"
+            android:layout_height="100dp"
             android:text="뒤로"
             android:layout_margin="10dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
         <Button
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:text="현재 위치"
+            android:id="@+id/SendMsg"
+            android:layout_width="120dp"
+            android:layout_height="100dp"
+            android:text="메세지"
             android:layout_margin="10dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:onClick="runGoogleMap"/>
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
     </LinearLayout>
 </LinearLayout>

@@ -8,10 +8,29 @@
     <string name="action_sign_in_short">로그인</string>
     <string name="welcome">"Welcome !"</string>
 
+    <!--제윤-->
     <string name="title_home">홈</string>
     <string name="title_wellfare">복지</string>
     <string name="title_chat">채팅</string>
     <string name="title_community">커뮤니티</string>
     <string name="title_calendar">일정</string>
     <string name="hello_blank_fragment">하이</string>
+    <string name="action_familyMap">가족 지도</string>
+    <string name="collection_user_locations">User Locations</string>
+    <string name="collection_users">Users</string>
+    <string name="action_sign_out">로그아웃</string>
+    <string name="collection_user_id">user_id</string>
+    <string name="collection_user_geo_point">geo_point</string>
+    <string name="collection_chatrooms">Chatrooms</string>
+    <string name="collection_chat_messages">Chat Messages</string>
+    <string name="collection_chatroom_user_list">User List</string>
+    <string name="intent_user_list">intent_user_list</string>
+    <string name="intent_user_locations">intent_user_locations</string>
+    <string name="intent_chatroom">intent_chatroom</string>
+    <string name="action_create_chatroom">Create Chatroom</string>
+    <string name="action_leave_chatroom">방 나가기</string>
+    <string name="action_chatroom_user_list">지도 보기</string>
+    <string name="action_profile">Profile</string>
+    <string name="fragment_user_list">참가자 목록</string>
+    <string name="fragment_image_list">사진 목록</string>
 </resources>

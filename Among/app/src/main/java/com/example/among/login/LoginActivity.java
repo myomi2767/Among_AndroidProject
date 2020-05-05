@@ -33,6 +33,7 @@ import com.example.among.R;
 import com.example.among.chatting.ChatLogActivity;
 import com.example.among.chatting.model.User;
 import com.example.among.children.childrenActivity;
+import com.example.among.children.map.familyChat.UserClient;
 import com.example.among.function.FunctionActivity;
 import com.example.among.parents.FCMActivity;
 import com.example.among.parents.Parents;
@@ -56,6 +57,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreSettings;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -91,6 +96,8 @@ public class LoginActivity extends AppCompatActivity {
     String userID;
     String password;
     int mode;
+    //Firebase
+    private FirebaseAuth.AuthStateListener mAuthListener;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -390,5 +397,51 @@ public class LoginActivity extends AppCompatActivity {
                             }
                         }
                 );
+    }
+    //로그인시 Auth 파베에 넣기
+    private void setupFirebaseAuth(){
+        Log.d("auth파베", "파베 setupFirebaseAuth: 메서드 호출");
+
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null) {
+                    Log.d("auth파베", "파베 onAuthStateChanged:로그인:" + user.getUid());
+                    Toast.makeText(LoginActivity.this, "Authenticated with: " + user.getEmail(), Toast.LENGTH_SHORT).show();
+
+                    FirebaseFirestore db = FirebaseFirestore.getInstance();
+                    FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
+                            .setTimestampsInSnapshotsEnabled(true)
+                            .build();
+                    db.setFirestoreSettings(settings);
+
+                    DocumentReference userRef = db.collection(getString(R.string.collection_users))
+                            .document(user.getUid());
+
+                    userRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            if(task.isSuccessful()){
+                                Log.d("auth파베", "파베 onComplete: DB에 User 설정.");
+                                com.example.among.children.user.User user = task.getResult().toObject(com.example.among.children.user.User.class);
+                                Log.d("auth파베", "유저"+user);
+                                ((UserClient)(getApplicationContext())).setUser(user);
+                            }
+                        }
+                    });
+
+                    Intent intent = new Intent(LoginActivity.this, childrenActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                    finish();
+
+                } else {
+                    // User is signed out
+                    Log.d("auth파베", "onAuthStateChanged:signed_out");
+                }
+                // ...
+            }
+        };
     }
 }
