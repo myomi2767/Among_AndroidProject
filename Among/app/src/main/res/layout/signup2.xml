@@ -108,5 +108,15 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="40dp"
         android:text="회원가입" />
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:visibility="invisible" />
+
+
 
 </LinearLayout>

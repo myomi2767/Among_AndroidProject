@@ -1,3 +1,10 @@
+conn system/manager
+create user among identified by among;
+grant connect, resource to among;
+ conn among/among;
+set linesize 500;
+set pagesize 500;
+
 create table member(
     idx number primary key,
     userID varchar2(40), 
