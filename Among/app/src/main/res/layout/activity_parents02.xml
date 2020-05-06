@@ -19,16 +19,17 @@
             android:layout_gravity="center">
 
             <TextView
-                android:id="@+id/text"
+                android:id="@+id/parents02_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="자녀1"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                android:text="My Child"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textSize="33dp"/>
             <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_margin="15dp"
-                android:id="@+id/farentsitemview"
+                android:id="@+id/parents02_img"
                 android:layout_width="90dp"
                 android:layout_height="70dp"
                 android:layout_gravity="center"/>

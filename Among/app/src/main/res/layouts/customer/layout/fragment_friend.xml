@@ -40,12 +40,6 @@
             android:scaleType="centerCrop"
             android:src="@android:drawable/ic_search_category_default" />
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp">
-
-
-    </LinearLayout>
 
     <LinearLayout
             android:orientation="horizontal"

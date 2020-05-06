@@ -156,7 +156,7 @@ public class BoardSelect<AppCompatActivity> extends androidx.appcompat.app.AppCo
                 object.put("writedate", commentItems[0].getDate());
                 object.put("user_id",commentItems[0].getUserid());
                 object.put("board_num",commentItems[0].getBoard_num());
-                url = new URL("http://192.168.219.106:8088/among/board/comment/insert");
+                url = new URL("http://70.12.227.61:8088/among/board/comment/insert");
 
                 OkHttpClient client = new OkHttpClient();
                 String json = object.toString();
@@ -200,7 +200,7 @@ public class BoardSelect<AppCompatActivity> extends androidx.appcompat.app.AppCo
             try {
                 object.put("board_num",commentItems[0].getBoard_num());
 
-                String path = "http://192.168.219.106:8088/among/board/comment/selectAll";
+                String path = "http://70.12.227.61:8088/among/board/comment/selectAll";
                 url = new URL(path);
 
                 OkHttpClient client = new OkHttpClient();

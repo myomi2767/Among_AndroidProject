@@ -1,9 +1,12 @@
 conn system/manager
 create user among identified by among;
 grant connect, resource to among;
- conn among/among;
+conn among/among;
 set linesize 500;
 set pagesize 500;
+
+drop sequence member_seq;
+drop table member;
 
 create table member(
     idx number primary key,
@@ -21,14 +24,13 @@ create sequence member_seq;
 drop sequence board_seq;
 drop table board;
 
---------------------------------성현---------------------------------------
 create sequence board_seq start with 1 increment by 1 maxvalue 10000;
 create table board(
-	board_seq number primary key,
-	title varchar2(1000) not null,
-	text varchar2(3000) not null,
-	write_date varchar2(500),
-	user_ID varchar2(20)
+   board_seq number primary key,
+   title varchar2(1000) not null,
+   text varchar2(3000) not null,
+   write_date varchar2(500),
+   user_ID varchar2(20)
 );
 
 drop table reply;
@@ -36,10 +38,20 @@ drop sequence comment_seq;
 
 create sequence comment_seq start with 1 increment by 1 maxvalue 10000;
 create table reply(
-	comment_seq number primary key,
-	mcomment varchar2(3000) not null,
-	writedate varchar2(500),
-	user_ID varchar2(20),
-	board_num number
+   comment_seq number primary key,
+   mcomment varchar2(3000) not null,
+   writedate varchar2(500),
+   user_ID varchar2(20),
+   board_num number
 );
---------------------------------성현---------------------------------------
+
+drop table child;
+drop sequence seq;
+
+create sequence seq start with 1 increment by 1 maxvalue 10000;
+create table child(
+   parents_user_id varchar2(500),
+   seq number,
+   name varchar2(500),
+   phone_number varchar2(500),
+   img number);

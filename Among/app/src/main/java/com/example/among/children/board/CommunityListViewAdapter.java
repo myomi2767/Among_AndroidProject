@@ -260,7 +260,7 @@ public class CommunityListViewAdapter extends RecyclerView.Adapter<CommunityList
                 object.put("title", items[0].getTitle());
                 object.put("text", items[0].getText());
                 object.put("user_id",items[0].getUserid());
-                url = new URL("http://192.168.219.106:8088/among/board/update");
+                url = new URL("http://70.12.227.61:8088/among/board/update");
 
                 OkHttpClient client = new OkHttpClient();
                 String json = object.toString();
@@ -305,7 +305,7 @@ public class CommunityListViewAdapter extends RecyclerView.Adapter<CommunityList
             try {
                 object.put("board_seq", items[0].getSeq());
                 object.put("user_id",items[0].getUserid());
-                url = new URL("http://192.168.219.106:8088/among/board/delete");
+                url = new URL("http://70.12.227.61:8088/among/board/delete");
 
                 OkHttpClient client = new OkHttpClient();
                 String json = object.toString();
@@ -338,5 +338,4 @@ public class CommunityListViewAdapter extends RecyclerView.Adapter<CommunityList
         }
     }
 }
-
 

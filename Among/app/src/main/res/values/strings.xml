@@ -30,7 +30,7 @@
     <string name="action_create_chatroom">Create Chatroom</string>
     <string name="action_leave_chatroom">방 나가기</string>
     <string name="action_chatroom_user_list">지도 보기</string>
-    <string name="action_profile">Profile</string>
+    <string name="action_myLocation">내 위치</string>
     <string name="fragment_user_list">참가자 목록</string>
     <string name="fragment_image_list">사진 목록</string>
 </resources>

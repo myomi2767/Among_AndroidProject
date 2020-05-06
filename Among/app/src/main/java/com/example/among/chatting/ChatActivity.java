@@ -93,8 +93,6 @@ public class ChatActivity extends AppCompatActivity {
                             Manifest.permission.WRITE_EXTERNAL_STORAGE,
                             Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
             printToast("권한이 설정되었습니다.");
-
-
         }*/
         sendBtn = findViewById(R.id.senderBtn);
         mMessageText = findViewById(R.id.edtContent);
@@ -233,7 +231,7 @@ public class ChatActivity extends AppCompatActivity {
         }
     }
     private Message.MessageType mMessageType = Message.MessageType.TEXT;
- public void upload(final String uri){
+    public void upload(final String uri){
         Log.d("myupload","이미지"+uri);
         StorageReference storageRef = storage.getReference();
         imageStorageRef = FirebaseStorage.getInstance().getReference("/chats/").child(mChatId);
@@ -252,12 +250,12 @@ public class ChatActivity extends AppCompatActivity {
             public void onSuccess(UploadTask.TaskSnapshot task) {
 
                 Log.d("imageUpload","upload::::::::::"+image_url);
-                 myRef = firebaseDB.getReference("chat_messages").child(mChatId).child("images");
-                 PhotoMessage photouri = new PhotoMessage();
-                 photouri.setPhotoUrl(image_url);
-                 myRef.child("image").push().setValue(photouri);
-                 mMessageType = Message.MessageType.PHOTO;
-                 sendMessage();
+                myRef = firebaseDB.getReference("chat_messages").child(mChatId).child("images");
+                PhotoMessage photouri = new PhotoMessage();
+                photouri.setPhotoUrl(image_url);
+                myRef.child("image").push().setValue(photouri);
+                mMessageType = Message.MessageType.PHOTO;
+                sendMessage();
             }
         });
     }
@@ -383,92 +381,151 @@ public class ChatActivity extends AppCompatActivity {
         }
     }
 
-        Message message = new Message();
-        public void sendMessage () {
-            //메시지 키 생성
-            chatMessageRef = firebaseDB.getReference("chat_messages").child(mChatId);
-            //chat_message - {chat-id}-{messageId}-messageInfo
-            String messageId = chatMessageRef.push().getKey();
-            String messageText = mMessageText.getText().toString();
-            //String lastMessage = mMessageText.getText().toString();
+    Message message = new Message();
+    public void sendMessage () {
+        //메시지 키 생성
+        chatMessageRef = firebaseDB.getReference("chat_messages").child(mChatId);
+        //chat_message - {chat-id}-{messageId}-messageInfo
+        String messageId = chatMessageRef.push().getKey();
+        String messageText = mMessageText.getText().toString();
+        //String lastMessage = mMessageText.getText().toString();
 
 
-            if(mMessageType== Message.MessageType.TEXT){
-                if (messageText.isEmpty()) {
-                    //메시지를 입력하지 않으면 전송이 되지 않도록
-                    return;
-                }
-                message = new TextMessage();
-                ((TextMessage)message).setMessageText(messageText);
-
-            }else if (mMessageType == Message.MessageType.PHOTO){
-                message = new PhotoMessage();
-                ((PhotoMessage)message).setPhotoUrl(image_url);
-
+        if(mMessageType== Message.MessageType.TEXT){
+            if (messageText.isEmpty()) {
+                //메시지를 입력하지 않으면 전송이 되지 않도록
+                return;
             }
-            //textMessage.setMessageText(messageText);
-            message.setMessageDate(new Date());
-            message.setChatId(mChatId);
-            message.setMessageId(messageId);
-            message.setMessageType(mMessageType);
-            message.setMessageUser(new User(firebaseUser.getUid(), firebaseUser.getEmail(),
-                    firebaseUser.getDisplayName(), firebaseUser.getPhotoUrl().toString()));
-            message.setReadUserList(Arrays.asList(new String[]{firebaseUser.getUid()}));
-            String[] uids = getIntent().getExtras().getStringArray("uids"); // 신규 방인 경우에만
-            //읽지 않은 사람 수
-            if (uids != null) {
-                message.setUnreadCount(uids.length - 1);
-            }
-            mMessageText.setText(""); // 채팅창 공백으로 비우기
-            mMessageType = Message.MessageType.TEXT;
-            chatMemberRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull final DataSnapshot dataSnapshot) {
-                    //unReadCount 셋팅하기 위한 대화 상대의 수 가져오기
-                    long memberCount = dataSnapshot.getChildrenCount(); //mChatID 갯수
-                    message.setUnreadCount((int) memberCount - 1);
-                    chatMessageRef.child(message.getMessageId()).setValue(message, new DatabaseReference.CompletionListener() {
-                        @Override
-                        public void onComplete(@Nullable final DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
-                            Iterator<DataSnapshot> memberIterator = dataSnapshot.getChildren().iterator();
-                            while (memberIterator.hasNext()) {
-                                User chatMember = memberIterator.next().getValue(User.class); //user 정보 꺼내오기
+            message = new TextMessage();
+            ((TextMessage)message).setMessageText(messageText);
 
+        }else if (mMessageType == Message.MessageType.PHOTO){
+            message = new PhotoMessage();
+            ((PhotoMessage)message).setPhotoUrl(image_url);
+
+        }
+        //textMessage.setMessageText(messageText);
+        message.setMessageDate(new Date());
+        message.setChatId(mChatId);
+        message.setMessageId(messageId);
+        message.setMessageType(mMessageType);
+        message.setMessageUser(new User(firebaseUser.getUid(), firebaseUser.getEmail(),
+                firebaseUser.getDisplayName(), firebaseUser.getPhotoUrl().toString()));
+        message.setReadUserList(Arrays.asList(new String[]{firebaseUser.getUid()}));
+        String[] uids = getIntent().getExtras().getStringArray("uids"); // 신규 방인 경우에만
+        //읽지 않은 사람 수
+        if (uids != null) {
+            message.setUnreadCount(uids.length - 1);
+        }
+        mMessageText.setText(""); // 채팅창 공백으로 비우기
+        mMessageType = Message.MessageType.TEXT;
+        chatMemberRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull final DataSnapshot dataSnapshot) {
+                //unReadCount 셋팅하기 위한 대화 상대의 수 가져오기
+                long memberCount = dataSnapshot.getChildrenCount(); //mChatID 갯수
+                message.setUnreadCount((int) memberCount - 1);
+                chatMessageRef.child(message.getMessageId()).setValue(message, new DatabaseReference.CompletionListener() {
+                    @Override
+                    public void onComplete(@Nullable final DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
+                        Iterator<DataSnapshot> memberIterator = dataSnapshot.getChildren().iterator();
+                        while (memberIterator.hasNext()) {
+                            User chatMember = memberIterator.next().getValue(User.class); //user 정보 꺼내오기
+
+                            mUserRef
+                                    .child(chatMember.getUid())
+                                    .child("chats")
+                                    .child(mChatId)
+                                    .child("lastMessage")
+                                    .setValue(message);
+
+                            if (!chatMember.getUid().equals(firebaseUser.getUid())) {
                                 mUserRef
-                                            .child(chatMember.getUid())
-                                            .child("chats")
-                                            .child(mChatId)
-                                            .child("lastMessage")
-                                            .setValue(message);
+                                        .child(chatMember.getUid())
+                                        .child("chats")
+                                        .child(mChatId)
+                                        .child("totalUnreadCount")
+                                        .runTransaction(new Transaction.Handler() {
+                                            @NonNull
+                                            @Override
+                                            public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
+                                                Log.d("test",mutableData+"");
+                                                Log.d("test", mutableData.getValue(Long.class)+"");
+                                                long totalUnreadCount = mutableData.getValue(long.class) == null ? 0 : mutableData.getValue(long.class);
+                                                mutableData.setValue(totalUnreadCount+1);
 
-                                if (!chatMember.getUid().equals(firebaseUser.getUid())) {
-                                    mUserRef
-                                            .child(chatMember.getUid())
-                                            .child("chats")
-                                            .child(mChatId)
-                                            .child("totalUnreadCount")
-                                            .runTransaction(new Transaction.Handler() {
-                                                @NonNull
-                                                @Override
-                                                public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
-                                                    Log.d("test",mutableData+"");
-                                                    Log.d("test", mutableData.getValue(Long.class)+"");
-                                                    long totalUnreadCount = mutableData.getValue(long.class) == null ? 0 : mutableData.getValue(long.class);
-                                                    mutableData.setValue(totalUnreadCount+1);
+                                                return Transaction.success(mutableData);
+                                            }
 
-                                                    return Transaction.success(mutableData);
-                                                }
+                                            @Override
+                                            public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
 
-                                                @Override
-                                                public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
+                                            }
+                                        });
 
-                                                }
-                                            });
-
-                                }
                             }
                         }
-                    });
+                    }
+                });
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+    private boolean isSentMessage = false;
+    public void createChat () {
+        //방 생성
+
+        final Chat chat = new Chat();
+        // 채팅 주소 얻어오기
+        mChatId = chatRef.push().getKey();
+        chatRef = chatRef.child(mChatId);
+        chatMemberRef = firebaseDB.getReference("chat_members").child(mChatId);
+        chat.setChatId(mChatId);
+        chat.setCreateDate(new Date()); // 생성 날짜
+        String uid = getIntent().getStringExtra("uid");
+        String[] uids = getIntent().getExtras().getStringArray("uids");
+        if (uid != null) {
+            //1:1
+            uids = new String[]{uid};
+
+        }
+        List<String> uidList = new ArrayList<>(Arrays.asList(uids));
+        uidList.add(firebaseUser.getUid());
+        //채팅방 고유 키 얻어오기
+
+        //사용자 1, 사용자 2 출력...
+
+        for (String userId : uidList) {
+            //uid - userInfo
+            mUserRef.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull final DataSnapshot dataSnapshot) {
+                    User member = dataSnapshot.getValue(User.class);
+                    //firebase db에 있는 정보 User 형으로 가져오기
+                           /* titleBuffer.append(member.getName());
+                            titleBuffer.append(",");*/
+
+                    chatMemberRef.child(member.getUid()).
+                            setValue(member, new DatabaseReference.CompletionListener() {
+                                @Override
+                                public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
+                                    //방정보 Users-uid-chats-{chat-id}-chatInfo
+                                    dataSnapshot.getRef().child("chats").child(mChatId).setValue(chat);
+                                    if (!isSentMessage) {
+                                        sendMessage();
+                                        addMessageListener();
+                                        addChatListener();
+                                        isSentMessage = true;
+
+                                        ChattingFragment.JOINED_ROOM =mChatId;
+                                    }
+                                }
+                            });
                 }
 
                 @Override
@@ -478,65 +535,6 @@ public class ChatActivity extends AppCompatActivity {
             });
 
         }
-        private boolean isSentMessage = false;
-        public void createChat () {
-            //방 생성
-
-            final Chat chat = new Chat();
-            // 채팅 주소 얻어오기
-            mChatId = chatRef.push().getKey();
-            chatRef = chatRef.child(mChatId);
-            chatMemberRef = firebaseDB.getReference("chat_members").child(mChatId);
-            chat.setChatId(mChatId);
-            chat.setCreateDate(new Date()); // 생성 날짜
-            String uid = getIntent().getStringExtra("uid");
-            String[] uids = getIntent().getExtras().getStringArray("uids");
-            if (uid != null) {
-                //1:1
-                uids = new String[]{uid};
-
-            }
-            List<String> uidList = new ArrayList<>(Arrays.asList(uids));
-            uidList.add(firebaseUser.getUid());
-            //채팅방 고유 키 얻어오기
-
-            //사용자 1, 사용자 2 출력...
-
-            for (String userId : uidList) {
-                //uid - userInfo
-                mUserRef.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull final DataSnapshot dataSnapshot) {
-                        User member = dataSnapshot.getValue(User.class);
-                                //firebase db에 있는 정보 User 형으로 가져오기
-                           /* titleBuffer.append(member.getName());
-                            titleBuffer.append(",");*/
-
-                        chatMemberRef.child(member.getUid()).
-                                setValue(member, new DatabaseReference.CompletionListener() {
-                                    @Override
-                                    public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
-                                        //방정보 Users-uid-chats-{chat-id}-chatInfo
-                                        dataSnapshot.getRef().child("chats").child(mChatId).setValue(chat);
-                                        if (!isSentMessage) {
-                                            sendMessage();
-                                            addMessageListener();
-                                            addChatListener();
-                                            isSentMessage = true;
-
-                                            ChattingFragment.JOINED_ROOM =mChatId;
-                                        }
-                                    }
-                                });
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
-
-            }
-        }
     }
+}
 

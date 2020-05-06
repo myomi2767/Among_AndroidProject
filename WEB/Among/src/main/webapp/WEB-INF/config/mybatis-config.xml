@@ -9,13 +9,14 @@
 		<typeAlias type="android.among.parents.fcm.FCMDTO" alias="fcm"/>
 		<typeAlias type="android.among.community.board.BoardDTO" alias="board"/>
 		<typeAlias type="android.among.community.comment.CommentDTO" alias="comment"/>
+		<typeAlias type="android.among.parents.child.ChildDTO" alias="child"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mapper/member.xml"/>
 		<mapper resource="mapper/fcm.xml"/>
 		<mapper resource="mapper/board.xml"/>
 		<mapper resource="mapper/comment.xml"/>
-	
+		<mapper resource="mapper/child.xml"/>
 	</mappers>
 </configuration>
 

@@ -8,6 +8,27 @@
     android:layout_weight="1"
     tools:context=".parents.Parents">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/parents_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/appbar"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme" >
+        <ImageView
+            android:id="@+id/toolbar_img"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/among_logo" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="AMONG"
+            android:textColor="@color/syAppbar"
+            android:layout_marginLeft="3dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
+    </androidx.appcompat.widget.Toolbar>
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -25,15 +46,25 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ToggleButton
-            android:id="@+id/toggleButton"
+        <Button
+            android:id="@+id/btn_insert_child"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:text="ToggleButton"
+            android:layout_height="70dp"
+            android:layout_margin="2dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textOff="채팅방 입장"
-            android:textOn="채팅방 입장"
-            android:textSize="30sp" />
+            android:text="자녀 추가하기"
+            android:textSize="30dp"/>
+
+        <Button
+            android:id="@+id/btn_enter_chat"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_margin="2dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:text="채팅방 입장하기"
+            android:textSize="30dp"
+            android:backgroundTint="@color/colorMonth"/>
+
     </LinearLayout>
 
 </LinearLayout>

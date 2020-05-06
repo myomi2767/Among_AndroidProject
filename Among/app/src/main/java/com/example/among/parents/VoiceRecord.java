@@ -6,6 +6,7 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -21,14 +22,22 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 
 import com.example.among.R;
+import com.example.among.fcm.FcmActivity;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 
 import java.io.File;
 import java.io.IOException;
@@ -36,9 +45,33 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import androidx.core.app.NotificationCompat;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.os.Build;
+import android.os.Bundle;
+import android.view.View;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import okhttp3.Call;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 
 public class VoiceRecord extends AppCompatActivity {
     NotificationManager notificationManager;
+    private Context context;
+    EditText editText;
+    TextView textView2;
+    static String regId;
 
     MediaRecorder recorder;
     boolean isRecording;
@@ -78,12 +111,12 @@ public class VoiceRecord extends AppCompatActivity {
         TransferBtn = findViewById(R.id.transfer);
         textView = findViewById(R.id.txtView);
 
-
-    /*    Time = System.currentTimeMillis();
-        Date time = new Date(Time);
-        Random rand = new Random();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddhhmmss");
-        mTime = simpleDateFormat.format(time)+"";*/
+        /*FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(this, new OnSuccessListener<InstanceIdResult>() {
+            @Override
+            public void onSuccess(InstanceIdResult instanceIdResult) {
+                String newToken = getToken();
+            }
+        });*/
 
         RecordBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -166,8 +199,11 @@ public class VoiceRecord extends AppCompatActivity {
                     FileTask networkTask = new FileTask();
                     networkTask.execute(map);
                 }
+                /*String instanceId = FirebaseInstanceId.getInstance().getId();
+                println("확인된 인스턴스 id: "+instanceId);
 
-                btn_pending_click(v);
+                *//*getToken();*//*
+                btn_pending_click(v);*/
             }
         });
     }
@@ -261,13 +297,45 @@ public class VoiceRecord extends AppCompatActivity {
         }
     }
 
+    public void println(String data){
+        textView.append(data +"\n");
+    }
+
+
+
     //**************************NOTIFICATION***************************
+
+    public void btn_image_style(View view){
+        NotificationCompat.Builder builder=
+                getBuilder("pending","pending_intent");
+        builder.setSmallIcon(android.R.drawable.ic_notification_overlay);
+        builder.setContentTitle("style연습");
+        builder.setContentText("이미지가 보이는 Notification입니다.");
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.user);
+        builder.setLargeIcon(bitmap);
+        builder.setDefaults(Notification.DEFAULT_SOUND |
+                Notification.DEFAULT_VIBRATE | Notification.DEFAULT_LIGHTS);
+
+        //큰이미지 보기
+        NotificationCompat.BigPictureStyle style = new NotificationCompat.BigPictureStyle(builder);
+        style.bigPicture(bitmap);
+        builder.setStyle(style);
+
+        Intent intent = new Intent(this,VoiceNoti.class);
+        PendingIntent pendingIntent =
+                PendingIntent.getActivity(this,10,intent,
+                        PendingIntent.FLAG_UPDATE_CURRENT);
+        builder.setContentIntent(pendingIntent);
+        Notification notification = builder.build();
+        notificationManager.notify(1005,notification);
+    }
 
     public void btn_pending_click(View view){
         NotificationCompat.Builder builder= getBuilder("pending","pending_intent");
-        builder.setSmallIcon(android.R.drawable.ic_notification_overlay);
+        builder.setSmallIcon(R.drawable.common_google_signin_btn_icon_light_normal);
         builder.setContentTitle("Among - 음성메시지 도착");
         builder.setContentText("자 클릭하세요 액티비티가 실행됩니다.");
+        builder.setTicker("음성메시지 도착^^");
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.alarm);
         builder.setLargeIcon(bitmap);
         builder.setDefaults(Notification.DEFAULT_SOUND | Notification.DEFAULT_VIBRATE | Notification.DEFAULT_LIGHTS);
@@ -281,30 +349,18 @@ public class VoiceRecord extends AppCompatActivity {
         PendingIntent pendingIntent = PendingIntent.getActivity(this,10,intent,
                 PendingIntent.FLAG_UPDATE_CURRENT);
 
+        Log.d("mynoti",pendingIntent+":::::::::::::pendingintent");
+        intent.putExtra("noti_id",1);
+        intent.putExtra("file","file");
+        intent.putExtra("filename","filename");
+
+
         //Builder에게 PendingIntent설정
         builder.setContentIntent(pendingIntent);
         Notification notification = builder.build();
         notificationManager.notify(1005,notification);
     }
 
-    public void btn_click(View view){
-        NotificationCompat.Builder builder= getBuilder("channel_1","data manager");
-        //안드로이드 이미지 설정
-        builder.setSmallIcon(android.R.drawable.ic_notification_overlay);
-        //제목설정
-        builder.setContentTitle("Notification연습");
-        builder.setContentText("지금 바쁘고 힘드시죠? 모두 행복하세요!~~~~");
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.alarm);
-        builder.setLargeIcon(bitmap);
-        //알림과 동시에 소리와 스마트폰에 진동이 울리도록 할 수 있다.
-        builder.setDefaults(Notification.DEFAULT_SOUND | Notification.DEFAULT_VIBRATE | Notification.DEFAULT_LIGHTS);
-
-        //Notification객체 만들기
-        Notification notification = builder.build();
-        //Notification을 상태바에 등록하기 - id는 알림을 식별하기 위해 사용하며 발생된 notification을 보통은 사용자가
-        //알림을 클릭하거나 밀어서 사라지게 만들 수 있지만 프로그램 안에서 취소해야 하는 경우 식별해야 하므로
-        notificationManager.notify(1004,notification);
-    }
 
     //Notification객체는 직접 생성되지 않고 NotificationCompat.Builder를 이용해서 생성한다.
     //Notification은 안드로이드 버전별로 많이 바뀌었다. 이렇게 자주 바뀌면 호환성에 문제가 생길텐데
@@ -328,4 +384,174 @@ public class VoiceRecord extends AppCompatActivity {
         return builder;
     }
 
+    /*//***************************************FCM*****************************************
+
+    public void request(View view){
+        new VoiceRecord.rquestThread("2").start();
+    }
+    //토큰을 생성하고 만드는 작업
+    public String getToken(){
+        //현재 토큰 검색
+        FirebaseInstanceId.getInstance().getInstanceId()
+                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                        //토큰을 가져오다 실패하면 실행하게 된다.
+                        if (!task.isSuccessful()) {
+                            Log.d("myfcm", "getInstanceId failed", task.getException());
+                            return;
+                        }
+                        //new Instance ID Token
+                        String token = task.getResult().getToken();
+                        String id = task.getResult().getId();
+                        Log.d("myfcm", token);
+                        new VoiceRecord.SendTokenThread(token).start();
+
+
+                    }
+                });
+        return token;
+    }
+    public class SendTokenThread extends Thread{
+        String token;
+        public SendTokenThread(String token) {
+            this.token = token;
+        }
+
+        @Override
+        public void run() {
+            super.run();
+            try {
+                OkHttpClient client = new OkHttpClient();
+                Request.Builder builder = new Request.Builder();
+                builder = builder.url("http://70.12.227.61:8088/among/fcm/fcm_check?token="+token);
+                Request request = builder.build();
+                Call newcall = client.newCall(request);
+                newcall.execute();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    public class rquestThread extends Thread{
+        String id;
+        public rquestThread(String id) {
+            this.id = id;
+        }
+
+        @Override
+        public void run() {
+            super.run();
+            try {
+                OkHttpClient client = new OkHttpClient();
+                Request.Builder builder = new Request.Builder();
+                builder = builder.url("http://70.12.227.61:8088/among/fcm/sendClient?id="+id);
+                Request request = builder.build();
+                Call newcall = client.newCall(request);
+                newcall.execute();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }*/
+
+    /*@Override
+    protected void onNewIntent(Intent intent) {
+        println("onNewIntent 호출됨");
+
+        if(intent!=null){
+            processIntent(intent);
+        }
+
+        super.onNewIntent(intent);
+    }
+
+    private void processIntent(Intent intent){
+        String from = intent.getStringExtra("file");
+        if(from==null){
+            println("from is null.");
+            return;
+        }
+        String contents = intent.getStringExtra("contents");
+        println("DATA: "+from+", "+contents);
+        textView.setText("["+from+"]로부터 수신한 데이터 : "+contents);
+    }
+
+    public void send(String input){
+        JSONObject requestData = new JSONObject();
+
+        try {
+            requestData.put("priority","high");
+            JSONObject dataObj = new JSONObject();
+            dataObj.put("contents",input);
+            requestData.put("data",dataObj);
+
+            JSONArray idArray = new JSONArray();
+            idArray.put(0, regId);
+            requestData.put("registration_ids",idArray);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        sendData(requestData, new SendResponseListener() {
+            @Override
+            public void onRequestStarted() {
+                println("onRequestStarted() 호출됨.");
+            }
+
+            @Override
+            public void onRequestCompleted() {
+                println("onRequestCompleted() 호출됨.");
+            }
+
+            @Override
+            public void onReqeuestWithError(VolleyError error) {
+                println("onRequestWithError() 호출됨.");
+            }
+        });
+    }
+
+    public interface SendResponseListener{
+        public void onRequestStarted();
+        public void onRequestCompleted();
+        public void onReqeuestWithError(VolleyError error);
+    }
+
+    public void sendData(JSONObject requestData, final SendResponseListener listener){
+        JsonObjectRequest request = new JsonObjectRequest(
+                com.android.volley.Request.Method.POST,
+                "https//fcm.googleapis.com/fcm/send",
+                requestData,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        listener.onRequestCompleted();
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                listener.onReqeuestWithError(error);
+            }
+        }){
+            protected Map<String, String> getParams() throws AuthFailureError{
+                Map<String, String> params = new HashMap<String, String>();
+
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<String, String>();
+                headers.put("Authorization","key=AAAAFDpuTWw:APA91bHUbmxnBQLYKdLUwS0TeX4M1b_QbYTAN5qd1JzmvDBcCc1H8Ixb5pNBEyg3UymCIHNmW_o2MhbYsshwe3Rzwd1jIECR-t9Kcq-wTuVKu6x-XBrUCzpCCjZ-MKSw1SFnVN66E7Xt");
+                return headers;
+            }
+
+            @Override
+            public String getBodyContentType() {
+                return "application/json";
+            }
+        };
+        request.setShouldCache(false);
+        listener.onRequestStarted();
+        requestQueue.add(request);
+    }*/
 }

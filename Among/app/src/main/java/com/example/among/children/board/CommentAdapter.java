@@ -183,7 +183,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
                 object.put("comment_seq", items[0].getNum());
                 object.put("mcomment", items[0].getComment());
                 object.put("user_id",items[0].getUserid());
-                url = new URL("http://192.168.219.106:8088/among/board/comment/update");
+                url = new URL("http://70.12.227.61:8088/among/board/comment/update");
 
                 OkHttpClient client = new OkHttpClient();
                 String json = object.toString();
@@ -228,7 +228,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
             try {
                 object.put("comment_seq", items[0].getNum());
                 object.put("user_id",items[0].getUserid());
-                url = new URL("http://192.168.219.106:8088/among/board/comment/delete");
+                url = new URL("http://70.12.227.61:8088/among/board/comment/delete");
 
                 OkHttpClient client = new OkHttpClient();
                 String json = object.toString();

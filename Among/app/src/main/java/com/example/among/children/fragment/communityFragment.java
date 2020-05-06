@@ -114,7 +114,7 @@ public class communityFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View viewGroup = (View) LayoutInflater.from(getContext()).inflate(R.layout.fragment_community, container, false);
+        View viewGroup = (View) LayoutInflater.from(getContext()).inflate(R.layout.fragment_community2, container, false);
         listView = (RecyclerView) viewGroup.findViewById(R.id.recycler_listview);
         fab = viewGroup.findViewById(R.id.board_insert);
         spinner = viewGroup.findViewById(R.id.board_spinner);
@@ -127,7 +127,7 @@ public class communityFragment extends Fragment{
         Log.d("msg","fra안"+userid);
 
         filteredList = new ArrayList<>();
-        adapter = new CommunityListViewAdapter(communityFragment.this, list, R.layout.fragment_community, userid);
+        adapter = new CommunityListViewAdapter(communityFragment.this, list, R.layout.fragment_community2, userid);
 
         LinearLayoutManager manager = new LinearLayoutManager(getActivity());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -256,7 +256,7 @@ public class communityFragment extends Fragment{
                 object.put("write_date", boardItems[0].getDate());
                 object.put("user_id",boardItems[0].getUserid());
 
-                url = new URL("http://192.168.219.106:8088/among/board/insert");
+                url = new URL("http://70.12.227.61:8088/among/board/insert");
 
                 OkHttpClient client = new OkHttpClient();
                 String json = object.toString();
@@ -296,7 +296,7 @@ public class communityFragment extends Fragment{
         @Override
         protected String doInBackground(Void... voids) {
             try {
-                String path = "http://192.168.219.106:8088/among/board/selectAll";
+                String path = "http://70.12.227.61:8088/among/board/selectAll";
                 url = new URL(path);
 
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -338,11 +338,10 @@ public class communityFragment extends Fragment{
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            adapter = new CommunityListViewAdapter(communityFragment.this, list, R.layout.fragment_community, userid);
+            adapter = new CommunityListViewAdapter(communityFragment.this, list, R.layout.fragment_community2, userid);
             listView.setAdapter(adapter);
 
         }
     }
 }
-
 

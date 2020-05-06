@@ -1,6 +1,7 @@
 package com.example.among.login;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -19,12 +20,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.among.R;
+
 import com.example.among.children.user.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreSettings;
@@ -61,6 +68,8 @@ public class SignUp extends AppCompatActivity {
     Button idChk;
     RadioGroup radioGroup;
     TextView chkText;
+    DatabaseReference UserRef;
+
 
     private FirebaseFirestore mDb;
     private ProgressBar mProgressBar;
@@ -85,6 +94,7 @@ public class SignUp extends AppCompatActivity {
         mDb = FirebaseFirestore.getInstance();
         mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
 
+        UserRef = FirebaseDatabase.getInstance().getReference("users");
 
         tokenMake();
         hideSoftKeyboard();
@@ -109,10 +119,11 @@ public class SignUp extends AppCompatActivity {
 
                     HttpInsert task = new HttpInsert();
                     //정보 다 입력했으니 파베로 등록
+
                     registerNewEmail(id, pass);
+                    //registerChatEmail(id,na,pass);
 
                     task.execute(member);
-
                 }
             }
         });
@@ -164,7 +175,7 @@ public class SignUp extends AppCompatActivity {
                 object.put("birth",memberDTOS[0].getBirth());
                 object.put("gender",memberDTOS[0].getGender());
                 object.put("token",memberDTOS[0].getToken());
-                url = new URL("http://192.168.0.56:8088/among/member/insert.do");
+                url = new URL("http://70.12.227.61:8088/among/member/insert.do");
 
                 OkHttpClient client = new OkHttpClient();
                 String json = object.toString();
@@ -226,7 +237,7 @@ public class SignUp extends AppCompatActivity {
             String data;
             String str="";
             try {
-                url = new URL("http://192.168.0.56:8088/among/member/chk.do");
+                url = new URL("http://70.12.227.61:8088/among/member/chk.do");
 
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("POST");
@@ -339,4 +350,51 @@ public class SignUp extends AppCompatActivity {
                     }
                 });
     }
+/*    public void registerChatEmail(final String userID,String name, String password){
+        //AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null); //자격증명
+        Log.d("logTest",userID+":::::"+password+"::::");
+        final com.example.among.chatting.model.User user = new com.example.among.chatting.model.User();
+        user.setEmail(userID);
+        user.setName(name);
+        user.setUid(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        Log.d("logTest",userID+"::::"+FirebaseAuth.getInstance().getCurrentUser().getUid());
+
+        UserRef.child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(!dataSnapshot.exists()){
+                    //데이터가 존재하지 않을 때만 셋팅
+                    UserRef.child(user.getUid()).setValue(user, new DatabaseReference.CompletionListener() {
+                        @Override
+                        public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
+                            //정상적으로 Complete가 된 경우에만 Log를 쌓는다.
+                            if(databaseError==null){
+                                //Activity 연결
+                                                                *//*startActivity(new Intent(LoginActivity.this, childrenActivity.class));
+                                                                finish();*//*
+                                Intent intent = new Intent(SignUp.this, LoginActivity.class);
+                                intent.putExtra("userID",userID);
+                                startActivity(intent);
+                                finish();
+
+                            }else{
+
+                                Toast.makeText(SignUp.this, "파베 가입 오류1", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }); //users밑 userID
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+        //FirebaseUser user = auth.getCurrentUser();
+        // 성공을 햇을 때만 가져와야 NullPointerException발생하지 않는다.
+    }*/
+
 }

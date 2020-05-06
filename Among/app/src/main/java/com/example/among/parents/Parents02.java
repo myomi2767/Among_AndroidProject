@@ -10,14 +10,23 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.PermissionChecker;
 
 import com.example.among.R;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class Parents02 extends AppCompatActivity {
     Button close_btn;
+    String phone_number;
+    String name;
+    String uriNum;
+    int img;
+    TextView textView_name;
+    CircleImageView imageView_img;
     //승인받을 권한의 목록
     String[] permission_list = {
             Manifest.permission.CALL_PHONE,
@@ -33,9 +42,23 @@ public class Parents02 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parents02);
         close_btn = findViewById(R.id.close_btn);
+        textView_name = findViewById(R.id.parents02_name);
+        imageView_img = findViewById(R.id.parents02_img);
+
+
         final Intent intent = getIntent();
 
         runPermission();
+
+        Bundle extras = getIntent().getExtras();
+        phone_number = extras.getString("number");
+        name = extras.getString("name");
+        img = extras.getInt("img");
+        Log.d("mytest","click phone number :: "+phone_number);
+        uriNum = "tel:"+phone_number;
+
+        textView_name.setText(name);
+        imageView_img.setImageResource(R.drawable.user);
 
         close_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,11 +88,12 @@ public class Parents02 extends AppCompatActivity {
     //음성 통화 걸기 메소드
     public void runCallPhone(View v){
         Intent intent = null;
+
         int chk = PermissionChecker.checkSelfPermission(this, Manifest.permission.CALL_PHONE);
         if(chk== PackageManager.PERMISSION_GRANTED){
             Log.d("tel","성공");
             intent = new Intent(Intent.ACTION_CALL,
-                    Uri.parse("tel:01072971287"));
+                    Uri.parse(uriNum));
         }else{
             Log.d("tel","실패");
             return;
@@ -82,10 +106,12 @@ public class Parents02 extends AppCompatActivity {
         Intent intent = null;
         int chk = PermissionChecker.checkSelfPermission(this, Manifest.permission.CALL_PHONE);
         if(chk== PackageManager.PERMISSION_GRANTED){
-            intent = new Intent(Intent.ACTION_CALL,
-                    Uri.parse("tel:01072971287"));
-            intent.putExtra("andorid.phone.extra.calltype",0);
-            //intent.putExtra("videocall",true);
+            intent = new Intent("com.android.server.telecom");
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.putExtra("videocall",true);
+            intent.setData(Uri.parse("tel:01029093170"));
+            startActivity(intent);
+
         }else{
             Log.d("tel","실패");
             return;

@@ -30,14 +30,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-
-
+        <activity android:name=".parents.EnterChat"></activity>
         <!-- <activity android:name=".parents.Parents"></activity> -->
-
-        <activity android:name=".chatting.ChatActivity"></activity>
-        <activity android:name=".children.map.familyChat.ChatroomActivity"/>
-        <activity android:name=".children.map.familyChat.FamilychatMainActivity"/>
-        <activity android:name=".parents.VoiceNoti"/>
+        <activity android:name=".children.map.LocationMap"/>
+        <activity android:name=".chatting.ChatActivity" />
+        <activity android:name=".children.map.familyChat.ChatroomActivity" />
+        <activity android:name=".children.map.familyChat.FamilychatMainActivity" />
+        <activity android:name=".parents.VoiceNoti" />
         <activity android:name=".login.SignUp" />
         <activity android:name=".login.SignUpTerms" />
         <activity android:name=".login.LoginActivity" />
@@ -55,7 +54,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <receiver
             android:name=".calendar.AlarmReceiver"
             android:enabled="true"
@@ -64,9 +62,11 @@
                 <action android:name="com.exaple.among.calendar.DEFAULT" />
             </intent-filter>
         </receiver>
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAP8aGgJtBB6H8vvcZ9GHXUyTvcWhKS3FM" />
+
         <service
             android:name=".parents.FirebaseTest"
             android:enabled="true"

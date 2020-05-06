@@ -65,9 +65,8 @@ public class LocationMap extends AppCompatActivity
     LocationManager locationManager;
 
     // 구글 맵에 표시할 마커에 대한 옵션 설정
-    MarkerOptions myLocationMarker;
-    MarkerOptions friendMarker1;
-    MarkerOptions friendMarker2;
+    //MarkerOptions myLocationMarker;
+
 
     //Firebase
     //1. Auth 유저 불러온다.    getUserDetails
@@ -216,8 +215,8 @@ public class LocationMap extends AppCompatActivity
         LatLng myloc = new LatLng(myLocation.getLatitude(),
                 myLocation.getLongitude());
 
-        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(myloc, 14);
-        showMyLocationMarker(myLocation);
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(myloc, 15);
+        //showMyLocationMarker(myLocation);
         //showMyFriendLocationMarker(myLocation);
 
         //MapStyleOptions mapStyleOptions = new MapStyleOptions();
@@ -270,7 +269,7 @@ public class LocationMap extends AppCompatActivity
         }
     }
 
-    private void showMyLocationMarker(Location myLocation) {
+/*    private void showMyLocationMarker(Location myLocation) {
         Log.d(TAG, "로그 showMyLocationMarker");
         if (myLocationMarker == null) {
             myLocationMarker = new MarkerOptions();
@@ -293,7 +292,7 @@ public class LocationMap extends AppCompatActivity
         } else {
             myLocationMarker.position(new LatLng(myLocation.getLatitude(), myLocation.getLongitude()));
         }
-    }
+    }*/
 
 /*    private void showMyFriendLocationMarker(Location myLocation) {
         Log.d(TAG, "로그 showMyFriendLocationMarker");

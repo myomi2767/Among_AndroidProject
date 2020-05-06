@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -14,14 +14,15 @@
             android:orientation="vertical"
             android:layout_gravity="center">
             <TextView
-                android:id="@+id/text"
+                android:id="@+id/childName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:textSize="30dp"
                 android:layout_gravity="center"/>
             <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_margin="15dp"
-                android:id="@+id/farentsitemview"
+                android:id="@+id/parentsitemview"
                 android:layout_width="180dp"
                 android:layout_height="140dp"/>
         </LinearLayout>

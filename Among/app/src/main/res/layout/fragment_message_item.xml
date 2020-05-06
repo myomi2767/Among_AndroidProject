@@ -54,8 +54,8 @@
                     android:id="@+id/rcvUnreadCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="10dp"
-                    android:textColor="#FFFF00"/>
+                    android:textSize="11dp"
+                    android:textColor="#FF9800"/>
                 <TextView
                     android:id="@+id/rcvDate"
                     android:layout_width="wrap_content"
@@ -108,8 +108,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
-                android:textSize="10dp"
-                android:textColor="#FFFF00"/>
+                android:textSize="11dp"
+                android:textColor="#FF9800"/>
 
             <TextView
                 android:id="@+id/sendDate"
